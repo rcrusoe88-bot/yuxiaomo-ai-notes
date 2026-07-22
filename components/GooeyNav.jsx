@@ -1,5 +1,6 @@
 'use client';
 
+import Link from 'next/link';
 import { useEffect, useRef, useState } from 'react';
 
 const palette = ['var(--coral)', 'var(--lime)', 'var(--yellow)', 'var(--blue)'];
@@ -57,7 +58,7 @@ export default function GooeyNav({ items, initialActiveIndex = 0 }) {
     <nav aria-label="主页导航">
       <ul ref={navRef}>
         {items.map((item, index) => <li key={item.href} className={activeIndex === index ? 'active' : ''}>
-          <a href={item.href} onClick={event => selectItem(event.currentTarget.parentElement, index)}>{item.label}</a>
+          <Link href={item.href} onClick={event => selectItem(event.currentTarget.parentElement, index)}>{item.label}</Link>
         </li>)}
       </ul>
     </nav>
