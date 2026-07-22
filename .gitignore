@@ -1,0 +1,21 @@
+# dependencies
+/node_modules
+
+# next.js build output
+/.next
+/out
+
+# local build / playtest artifacts
+/output
+/.playwright-cli
+
+# logs
+*.log
+
+# env
+.env*
+!.env.example
+
+# os
+.DS_Store
+Thumbs.db

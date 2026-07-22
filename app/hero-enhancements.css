@@ -1,0 +1,35 @@
+.hero h1 em {
+  font-family: "Ma Shan Zheng", "LXGWWenKaiTC", "KaiTi", cursive;
+  font-size: .88em;
+  font-weight: 400;
+  letter-spacing: .14em;
+  padding-left: .06em;
+}
+
+.rotating-word {
+  animation: word-in .46s cubic-bezier(.16, .88, .4, 1) both;
+  background: var(--lime);
+  display: inline-block;
+  font: inherit;
+  font-weight: 400;
+  min-width: 2.45em;
+  padding: 2px 10px;
+  text-align: center;
+}
+
+@keyframes word-in {
+  from { opacity: 0; transform: translateY(8px) rotate(-2deg); }
+  to { opacity: 1; transform: translateY(0) rotate(0); }
+}
+
+.hero-grid { pointer-events: none; }
+
+.hero-particles { pointer-events: auto; }
+
+.hero-particles.particles-container {
+  cursor: crosshair;
+}
+
+@media (max-width: 700px) {
+  .rotating-word { min-width: 2.3em; padding-inline: 8px; }
+}
