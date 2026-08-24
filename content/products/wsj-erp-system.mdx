@@ -1,0 +1,43 @@
+---
+title: Materia ERP 物料管理系统
+summary: 面向 mRNA/LNP 生产的物料管理 MVP：出入库、库存、批次追溯与效期管理。
+description: 用 AI 从零搭起一套真正能用的生产物料管理系统。管理原辅料、脂质、中间体、成品、耗材、设备的出入库、库存、批次追溯与效期管理。
+repo: rcrusoe88-bot/wsj-erp-system
+status: 开发中 (MVP)
+tags: [ERP, 物料管理, React, NestJS, PostgreSQL]
+index: '01'
+tone: blue
+year: '2026'
+---
+
+## 为什么做这个
+
+生物制药工艺开发里，物料管理的可靠度直接影响批次成败。市面上通用 ERP 太重、太贵，也更难贴合 mRNA / LNP 这类小批量、多批次、强追溯的现场。于是我用 AI 从零搭起一套真正可用的 MVP。
+
+## 技术栈
+
+- 前端：React + Ant Design（Umi 框架）
+- 后端：NestJS + TypeScript + Prisma
+- 数据库：PostgreSQL 15+
+- 部署：Docker Compose 单机
+
+## 项目结构
+
+- `01-requirements/` PRD、用户故事、数据字典
+- `02-design/` 页面原型、组件设计
+- `03-database/` DDL、迁移、ER 图、Prisma Schema
+- `04-backend/` NestJS 源码（8 个模块）
+- `05-frontend/` React 源码（10 个 P0 页面）
+- `06-tests/` Jest API 集成测试（6 套件 24 用例）
+- `07-deploy/` Docker、Nginx、部署脚本
+
+## 核心功能
+
+- 物料主数据管理（编码、分类、规格、供应商）
+- 仓库与库位管理
+- 出入库流程（创建 → 审核 → 执行）
+- 库存实时查询与预警
+- 批次追溯与效期管理（≤30 天预警、过期锁定）
+- 用户与角色权限（管理员 / 审核员 / 操作员）
+
+<Callout>这是「现实引擎」里最硬核的一个：不是做内容，而是用 AI 造一套能管生产现场的系统。</Callout>

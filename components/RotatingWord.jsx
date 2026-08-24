@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react';
 
-const words = ['思考', '试验', '共创'];
+const words = ['工艺', '内容', '系统', '创作'];
 
 export default function RotatingWord() {
   const [index, setIndex] = useState(0);
@@ -14,5 +14,5 @@ export default function RotatingWord() {
     return () => window.clearInterval(timer);
   }, []);
 
-  return <b className="rotating-word" aria-live="polite" key={words[index]}>{words[index]}</b>;
+  return <b className="rotating-word" key={words[index]}>{words[index]}</b>;
 }

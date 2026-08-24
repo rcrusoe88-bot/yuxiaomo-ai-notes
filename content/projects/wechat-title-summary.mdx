@@ -1,0 +1,25 @@
+---
+title: wechat-title-summary
+summary: 输入正文，输出 3 组候选「标题 + 摘要」与 4 套封面 prompt。
+description: 面向专业生物医药 / mRNA / LNP 领域公众号文章。标题 ≤ 40 字、摘要 ≤ 120 字，保留 mRNA、LNP、CAR-T 等术语原文，内置质量自检脚本。
+repo: rcrusoe88-bot/wechat-title-summary
+status: Skill 已开源
+tags: [公众号, 标题, 摘要, 提示词, mRNA]
+index: '03'
+tone: lime
+year: '2026'
+---
+
+## 它做什么
+
+输入一篇公众号文章正文，输出 3 组候选「标题 + 摘要」，可选择生成 4 套风格的封面图 prompt，直接用于 DALL-E / Midjourney / Gemini 等模型。
+
+## 功能特性
+
+- 3 组差异化方案：报道型 / 叙事型 / 问句型 / 观点型 / 方法链型
+- 严格字数规格：标题 ≤ 40 字、摘要 ≤ 120 字，自动标注实际字数
+- 4 套封面风格 prompt：学术机制图、手绘信息图、顶刊科研封面、粘土泥塑微缩
+- 面向专业读者：保留 mRNA、LNP、CAR-T、tLNP 等术语原文，不做知识普及化
+- 内置校验脚本：检查标题/摘要字数与封面宽高比
+
+<Callout>这是「现实引擎」公众号闭环里，把内容质量提上去的那一环：先定标题，再定封面，最后才相信直觉。</Callout>

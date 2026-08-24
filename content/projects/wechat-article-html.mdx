@@ -1,0 +1,34 @@
+---
+title: anything-to-html
+summary: 把 Word / Markdown / 纯文本一键转成公众号兼容的全内联 HTML。
+description: 公众号创作链路的第一环。把常见文稿格式转成可直接粘贴进公众号的 HTML，支持 10 个主题、字体子集内嵌、自动校验。
+repo: rcrusoe88-bot/wechat-article-html
+status: Skill 已开源
+tags: [公众号, 转换器, 内联样式, 排版]
+index: '01'
+tone: coral
+year: '2026'
+---
+
+## 这条 Skill 解决什么
+
+写公众号最耗时的不是内容，而是「把 Markdown / Word 变成公众号认得的排版」。anything-to-html 把这一整段抽成一条可复用的命令行工具。
+
+## 核心能力
+
+- 10 个独立主题，兼容旧参数 `orange`、`blue`、`nature`、`morandi`
+- Word 正文、表格、内嵌图片按文档顺序提取
+- Markdown 标题、列表、引用、代码、表格与本地图片转换
+- 正文图片与二维码自动转 base64
+- 默认把 `Caveat Bold` 与 `XuanZongTi` 按文章字符子集化并内嵌，无网络依赖
+- `--wechat` 生成严格全内联、无 `<style>`、无 `font-family` 的公众号原生字体版本
+- 转换完成后自动执行 HTML 与主题契约校验
+
+## 输入 → 输出
+
+```bash
+python scripts/convert.py article.md --theme magazine --output article.html
+python scripts/convert.py article.md --theme magazine --output article.wechat.html --wechat
+```
+
+<Callout>它是「现实引擎」公众号闭环的第一块拼图：内容进来，排版出去。</Callout>
