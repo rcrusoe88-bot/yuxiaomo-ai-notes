@@ -1,5 +1,5 @@
 .hero h1 em {
-  font-family: "Ma Shan Zheng", "LXGWWenKaiTC", "KaiTi", cursive;
+  font-family: var(--font-main);
   font-size: .88em;
   font-weight: 400;
   letter-spacing: .14em;

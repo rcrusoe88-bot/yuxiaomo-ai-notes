@@ -19,7 +19,7 @@ export default function HomePage() {
       <div className="hero-content">
         <p className="eyebrow"><span />REALITY ENGINE / AI BUILDER / 2026</p>
         <h1><span className="hero-title-script">我是余小莫</span><br /><em>让 AI 落地</em></h1>
-        <p className="hero-sentence">生物制药工艺开发 · 公众号「现实引擎」主理人 · 把 <RotatingWord /> 连成闭环。</p>
+        <p className="hero-sentence">生物制药工艺开发 · 公众号「信使引擎」主理人 · 把 <RotatingWord /> 连成闭环。</p>
         <a className="scroll-link" href="#work">看看我在做什么 ↘</a>
       </div>
       <p className="hero-caption"><span>01</span>用 AI Skill 打通公众号创作，用代码造物料 ERP。</p>
@@ -28,7 +28,7 @@ export default function HomePage() {
 
     <section className="showcase-section" id="work">
       <div className="section-heading"><div><p className="eyebrow"><span />FROM IDEAS TO REAL TOOLS</p><h2>我的作品</h2></div></div>
-      <div className="showcase-stack">{projects.map(item => <ShowcaseCard key={item.slug} item={item} />)}</div>
+      <div className="showcase-stack deck">{projects.map(item => <ShowcaseCard key={item.slug} item={item} />)}</div>
     </section>
 
     <section className="showcase-section" id="products">
@@ -50,11 +50,11 @@ export default function HomePage() {
     <section className="about-section" id="about">
       <p className="eyebrow"><span />A LITTLE ABOUT ME</p>
       <h2>我相信，<br />把真实问题<br />交给 <em>AI</em> 拆解。</h2>
-      <p>我是余小莫，一名生物制药工艺开发工程师。白天做 mRNA / LNP 工艺，业余用 AI Agent skill 把公众号「现实引擎」的创作流程做成闭环，也正用 AI 亲手搭建一套物料管理 ERP。这里记录我让 AI 落地的每一件真实作品。</p>
+      <p>我是余小莫，一名生物制药工艺开发工程师。白天做 mRNA / LNP 工艺，业余用 AI Agent skill 把公众号「信使引擎」的创作流程做成闭环，也正用 AI 亲手搭建一套物料管理 ERP。这里记录我让 AI 落地的每一件真实作品。</p>
       <div className="contact-block">
         <a className="contact-item" href={site.github} target="_blank" rel="noreferrer"><small>GITHUB</small><strong>rcrusoe88-bot</strong><i>↗</i></a>
         <a className="contact-item" href={`mailto:${site.email}`}><small>EMAIL</small><strong>{site.email}</strong><i>↗</i></a>
-        <a className="contact-item" href={site.wechat.url} target="_blank" rel="noreferrer"><small>WECHAT</small><strong>公众号 · 现实引擎</strong><i>↗</i></a>
+        <a className="contact-item" href={site.wechat.url} target="_blank" rel="noreferrer"><small>WECHAT</small><strong>公众号 · 信使引擎</strong><i>↗</i></a>
       </div>
     </section>
     <footer>余小莫的个人站 <span>© 2026 · {site.tagline}</span></footer>

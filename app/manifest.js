@@ -5,7 +5,7 @@ export default function manifest() {
   return {
     name: '余小莫 · 让 AI 落地',
     short_name: '余小莫',
-    description: '生物制药工艺开发工程师。公众号「现实引擎」主理人，用 AI Skill 打通公众号创作闭环，用代码搭建物料管理 ERP。',
+    description: '生物制药工艺开发工程师。公众号「信使引擎」主理人，用 AI Skill 打通公众号创作闭环，用代码搭建物料管理 ERP。',
     start_url: `${base}/`,
     scope: `${base}/`,
     display: 'standalone',
