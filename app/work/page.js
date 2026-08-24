@@ -3,6 +3,8 @@ import { getAllProjects } from '../../lib/showcase';
 import ShowcaseCard from '../../components/ShowcaseCard';
 import SiteHeader from '../../components/SiteHeader';
 
+export const metadata = { title: '作品' };
+
 export default function WorkIndexPage() {
   const projects = getAllProjects();
   return <main className="archive">

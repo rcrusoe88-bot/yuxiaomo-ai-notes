@@ -6,7 +6,7 @@ import SiteHeader from '../../../components/SiteHeader';
 
 export function generateStaticParams() { return getAllNotes().map(note => ({ slug: note.slug })); }
 
-export async function generateMetadata({ params }) { const { slug } = await params; const note = getNoteBySlug(slug); return { title: note ? `${note.title} | 余小莫的 AI 笔记` : '文章不存在' }; }
+export async function generateMetadata({ params }) { const { slug } = await params; const note = getNoteBySlug(slug); return { title: note ? note.title : '文章不存在' }; }
 
 const Callout = ({ children }) => <aside className="callout">{children}</aside>;
 

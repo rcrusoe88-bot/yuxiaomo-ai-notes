@@ -3,6 +3,8 @@ import { getAllProducts } from '../../lib/showcase';
 import ShowcaseCard from '../../components/ShowcaseCard';
 import SiteHeader from '../../components/SiteHeader';
 
+export const metadata = { title: '产品' };
+
 export default function ProductsIndexPage() {
   const products = getAllProducts();
   return <main className="archive">

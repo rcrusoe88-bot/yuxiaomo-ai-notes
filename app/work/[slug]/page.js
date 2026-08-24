@@ -9,7 +9,7 @@ export function generateStaticParams() { return getAllProjects().map(item => ({ 
 export async function generateMetadata({ params }) {
   const { slug } = await params;
   const item = getProjectBySlug(slug);
-  return { title: item ? `${item.title} | 余小莫的作品` : '作品不存在' };
+  return { title: item ? item.title : '作品不存在' };
 }
 
 const Callout = ({ children }) => <aside className="callout">{children}</aside>;

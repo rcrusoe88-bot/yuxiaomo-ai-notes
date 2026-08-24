@@ -36,3 +36,12 @@
   .showcase-foot{grid-column:1}
   .about-section>p:last-of-type,.contact-block{margin-left:auto}
 }
+
+/* 尊重系统「减少动态效果」偏好：关闭平滑滚动与装饰性动画 */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .gooey-effect { transition: none !important; }
+  .gooey-particle { animation: none !important; }
+  .rotating-word { animation: none !important; }
+  .particles-container canvas { display: none; }
+}

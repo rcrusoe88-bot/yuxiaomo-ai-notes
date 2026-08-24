@@ -4,6 +4,12 @@ import SiteHeader from '../../../components/SiteHeader';
 
 export function generateStaticParams() { return Object.keys(categories).map(category => ({ category })); }
 
+export async function generateMetadata({ params }) {
+  const { category } = await params;
+  const categoryMeta = categories[category];
+  return { title: categoryMeta ? `${categoryMeta.name} 笔记` : '笔记' };
+}
+
 export default async function CategoryPage({ params }) {
   const { category: categorySlug } = await params;
   const category = categories[categorySlug];

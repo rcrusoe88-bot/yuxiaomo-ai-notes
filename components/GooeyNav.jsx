@@ -5,11 +5,15 @@ import { useEffect, useRef, useState } from 'react';
 
 const palette = ['var(--coral)', 'var(--lime)', 'var(--yellow)', 'var(--blue)'];
 
-export default function GooeyNav({ items, initialActiveIndex = 0 }) {
+const prefersReducedMotion = () =>
+  typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+export default function GooeyNav({ items, initialActiveIndex = 0, activeIndex, onSelect }) {
   const containerRef = useRef(null);
   const navRef = useRef(null);
   const effectRef = useRef(null);
-  const [activeIndex, setActiveIndex] = useState(initialActiveIndex);
+  const [localIndex, setLocalIndex] = useState(initialActiveIndex);
+  const currentIndex = typeof activeIndex === 'number' ? activeIndex : localIndex;
 
   const updateEffectPosition = element => {
     if (!containerRef.current || !effectRef.current) return;
@@ -24,6 +28,7 @@ export default function GooeyNav({ items, initialActiveIndex = 0 }) {
   };
 
   const burst = element => {
+    if (prefersReducedMotion()) return;
     for (let index = 0; index < 12; index += 1) {
       const particle = document.createElement('span');
       const angle = (Math.PI * 2 * index) / 12 + (Math.random() - 0.5) * 0.35;
@@ -39,25 +44,26 @@ export default function GooeyNav({ items, initialActiveIndex = 0 }) {
   };
 
   const selectItem = (element, index) => {
-    if (activeIndex === index) return;
-    setActiveIndex(index);
+    if (currentIndex === index) return;
+    setLocalIndex(index);
+    if (onSelect) onSelect(index);
     updateEffectPosition(element);
     if (effectRef.current) burst(effectRef.current);
   };
 
   useEffect(() => {
-    const activeItem = navRef.current?.querySelectorAll('li')[activeIndex];
+    const activeItem = navRef.current?.querySelectorAll('li')[currentIndex];
     if (!activeItem) return undefined;
     updateEffectPosition(activeItem);
     const observer = new ResizeObserver(() => updateEffectPosition(activeItem));
     observer.observe(containerRef.current);
     return () => observer.disconnect();
-  }, [activeIndex]);
+  }, [currentIndex]);
 
   return <div className="gooey-nav-container" ref={containerRef}>
     <nav aria-label="主页导航">
       <ul ref={navRef}>
-        {items.map((item, index) => <li key={item.href} className={activeIndex === index ? 'active' : ''}>
+        {items.map((item, index) => <li key={item.href} className={currentIndex === index ? 'active' : ''}>
           <Link href={item.href} onClick={event => selectItem(event.currentTarget.parentElement, index)}>{item.label}</Link>
         </li>)}
       </ul>
