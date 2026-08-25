@@ -1,7 +1,7 @@
 import localFont from 'next/font/local';
 import './globals.css';
 import './hero-enhancements.css';
-import { site } from '../lib/site';
+import { site, absoluteFileUrl } from '../lib/site';
 
 export const metadata = {
   metadataBase: new URL(site.website),
@@ -18,12 +18,14 @@ export const metadata = {
     siteName: '余小莫 · 让 AI 落地',
     title: '余小莫 · 让 AI 落地',
     description: '生物制药工艺开发工程师。公众号「信使引擎」主理人，用 AI Skill 打通公众号创作闭环，用代码搭建物料管理 ERP。',
-    url: site.website
+    url: site.website,
+    images: [{ url: absoluteFileUrl('/og.png'), width: 1200, height: 630, alt: '余小莫 · 让 AI 落地' }]
   },
   twitter: {
-    card: 'summary',
+    card: 'summary_large_image',
     title: '余小莫 · 让 AI 落地',
-    description: '生物制药工艺开发工程师。公众号「信使引擎」主理人，用 AI Skill 打通公众号创作闭环，用代码搭建物料管理 ERP。'
+    description: '生物制药工艺开发工程师。公众号「信使引擎」主理人，用 AI Skill 打通公众号创作闭环，用代码搭建物料管理 ERP。',
+    images: [absoluteFileUrl('/og.png')]
   },
   robots: { index: true, follow: true },
   applicationName: '余小莫 · 让 AI 落地',

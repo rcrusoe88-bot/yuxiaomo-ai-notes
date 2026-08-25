@@ -44,7 +44,7 @@ export default function HomePage() {
 
     <section className="recent-section">
       <div className="section-heading"><div><p className="eyebrow"><span />RECENTLY PUBLISHED</p><h2>最近更新</h2></div></div>
-      <div className="recent-list">{notes.slice(0, 4).map(note => <Link href={`/article/${note.slug}`} key={note.slug}><small>{note.date} / {categories[note.category].name}</small><strong>{note.title}</strong><i>↗</i></Link>)}</div>
+      <div className="recent-list">{notes.slice(0, 4).map(note => <Link href={`/article/${note.category}/${note.slug}`} key={`${note.category}-${note.slug}`}><small>{note.date} / {categories[note.category].name}</small><strong>{note.title}</strong><i>↗</i></Link>)}</div>
     </section>
 
     <section className="about-section" id="about">

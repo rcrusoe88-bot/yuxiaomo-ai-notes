@@ -20,8 +20,7 @@ export default function GooeyNav({ items, initialActiveIndex = 0, activeIndex, o
     const container = containerRef.current.getBoundingClientRect();
     const target = element.getBoundingClientRect();
     Object.assign(effectRef.current.style, {
-      left: `${target.left - container.left}px`,
-      top: `${target.top - container.top}px`,
+      transform: `translate(${target.left - container.left}px, ${target.top - container.top}px)`,
       width: `${target.width}px`,
       height: `${target.height}px`
     });
@@ -51,6 +50,9 @@ export default function GooeyNav({ items, initialActiveIndex = 0, activeIndex, o
     if (effectRef.current) burst(effectRef.current);
   };
 
+  // 键盘 Tab 聚焦到某一项时，让悬浮 pill 跟随（对 reduced-motion 无副作用）
+  const focusItem = element => updateEffectPosition(element);
+
   useEffect(() => {
     const activeItem = navRef.current?.querySelectorAll('li')[currentIndex];
     if (!activeItem) return undefined;
@@ -64,7 +66,12 @@ export default function GooeyNav({ items, initialActiveIndex = 0, activeIndex, o
     <nav aria-label="主页导航">
       <ul ref={navRef}>
         {items.map((item, index) => <li key={item.href} className={currentIndex === index ? 'active' : ''}>
-          <Link href={item.href} onClick={event => selectItem(event.currentTarget.parentElement, index)}>{item.label}</Link>
+          <Link
+            href={item.href}
+            aria-current={currentIndex === index ? 'page' : undefined}
+            onClick={event => selectItem(event.currentTarget.parentElement, index)}
+            onFocus={event => focusItem(event.currentTarget.parentElement)}
+          >{item.label}</Link>
         </li>)}
       </ul>
     </nav>

@@ -9,7 +9,7 @@ export default function sitemap() {
   const work = getAllProjects().map(item => ({ url: absoluteUrl(`/work/${item.slug}`), lastModified: now, changeFrequency: 'monthly', priority: 0.7 }));
   const products = getAllProducts().map(item => ({ url: absoluteUrl(`/products/${item.slug}`), lastModified: now, changeFrequency: 'monthly', priority: 0.7 }));
   const noteCategories = Object.keys(categories).map(category => ({ url: absoluteUrl(`/notes/${category}`), lastModified: now, changeFrequency: 'monthly', priority: 0.6 }));
-  const notes = getAllNotes().map(item => ({ url: absoluteUrl(`/article/${item.slug}`), lastModified: item.date, changeFrequency: 'monthly', priority: 0.6 }));
+  const notes = getAllNotes().map(item => ({ url: absoluteUrl(`/article/${item.category}/${item.slug}`), lastModified: item.date, changeFrequency: 'monthly', priority: 0.6 }));
 
   return [
     { url: absoluteUrl('/'), lastModified: now, changeFrequency: 'weekly', priority: 1 },

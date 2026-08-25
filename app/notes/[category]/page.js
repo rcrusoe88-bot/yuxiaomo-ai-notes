@@ -14,5 +14,5 @@ export default async function CategoryPage({ params }) {
   const { category: categorySlug } = await params;
   const category = categories[categorySlug];
   const notes = getNotesByCategory(categorySlug);
-  return <main className="archive"><SiteHeader /><Link className="back-link" href="/">← 返回首页</Link><p className="eyebrow"><span />{category.label}</p><h1>{category.name} 笔记</h1><p className="archive-intro">{category.description}</p><div className="article-list">{notes.map((note, index) => <Link href={`/article/${note.slug}`} key={note.slug}><small>{String(index + 1).padStart(2, '0')} / {note.date} / {note.readingTime} MIN</small><strong>{note.title}</strong><p>{note.summary}</p><i>↗</i></Link>)}</div></main>;
+  return <main className="archive"><SiteHeader showNav={false} /><Link className="back-link" href="/">← 返回首页</Link><p className="eyebrow"><span />{category.label}</p><h1>{category.name} 笔记</h1><p className="archive-intro">{category.description}</p><div className="article-list">{notes.map((note, index) => <Link href={`/article/${note.category}/${note.slug}`} key={`${note.category}-${note.slug}`}><small>{String(index + 1).padStart(2, '0')} / {note.date} / {note.readingTime} MIN</small><strong>{note.title}</strong><p>{note.summary}</p><i>↗</i></Link>)}</div></main>;
 }

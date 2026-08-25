@@ -8,7 +8,7 @@ export const metadata = { title: '作品' };
 export default function WorkIndexPage() {
   const projects = getAllProjects();
   return <main className="archive">
-    <SiteHeader />
+    <SiteHeader showNav={false} />
     <Link className="back-link" href="/#work">← 回到首页</Link>
     <p className="eyebrow"><span />WORK</p>
     <h1>作品</h1>

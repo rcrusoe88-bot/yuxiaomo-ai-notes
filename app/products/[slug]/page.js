@@ -20,7 +20,7 @@ export default async function ProductPage({ params }) {
   if (!item) return <main className="archive"><h1>产品不存在</h1></main>;
   const { content } = await compileMDX({ source: item.source, options: { parseFrontmatter: true, mdxOptions: { remarkPlugins: [remarkGfm] } }, components: { Callout } });
   return <main className="article-page project-page">
-    <SiteHeader />
+    <SiteHeader showNav={false} />
     <Link className="back-link" href="/#products">← 回到产品</Link>
     <p className="article-meta">PRODUCT / {item.index} / {item.year} / {item.status.toUpperCase()}</p>
     <h1>{item.title}</h1>

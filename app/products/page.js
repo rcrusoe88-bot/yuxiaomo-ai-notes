@@ -8,7 +8,7 @@ export const metadata = { title: '产品' };
 export default function ProductsIndexPage() {
   const products = getAllProducts();
   return <main className="archive">
-    <SiteHeader />
+    <SiteHeader showNav={false} />
     <Link className="back-link" href="/#products">← 回到首页</Link>
     <p className="eyebrow"><span />PRODUCTS</p>
     <h1>产品</h1>
