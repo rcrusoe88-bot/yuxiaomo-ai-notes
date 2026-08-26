@@ -63,8 +63,9 @@ export default function Particles({ className = '' }) {
         }
 
         const glow = Math.max(0, 1 - Math.abs(distance - radius * 0.58) / (radius * 0.42));
+        const alpha = Math.min(0.9, 0.18 + (index % 5) * 0.07 + glow * 0.42);
         context.beginPath();
-        context.fillStyle = glow > 0.25 ? 'rgba(217,255,75,.94)' : `rgba(26,28,26,${0.2 + (index % 5) * 0.08})`;
+        context.fillStyle = `rgba(26,28,26,${alpha})`;
         context.arc(particle.x, particle.y, particle.size + glow * 1.8, 0, Math.PI * 2);
         context.fill();
       });

@@ -3,7 +3,7 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useEffect, useState } from 'react';
-import GooeyNav from './GooeyNav';
+import PillNav from './PillNav/PillNav';
 import { navItems, navIndexForPath } from '../lib/site';
 
 const sectionMap = { work: 1, products: 2, notes: 3, about: 4 };
@@ -36,10 +36,10 @@ export default function SiteHeader({ showNav = true }) {
   }, [pathname, showNav]);
 
   const activeIndex = pathname === '/' ? scrollActive : navIndexForPath(pathname);
-  const handleSelect = index => setScrollActive(index);
+  const activeHref = navItems[activeIndex]?.href;
 
   return <header className="site-header">
-    <Link className="brand" href="/"><span className="brand-dot" />余小莫 <i>REALITY ENGINE</i></Link>
-    {showNav && <GooeyNav items={navItems} initialActiveIndex={activeIndex} activeIndex={activeIndex} onSelect={handleSelect} />}
+    {pathname === '/' && <Link className="brand" href="/"><span className="brand-dot" />余小莫 <i>REALITY ENGINE</i></Link>}
+    {showNav && <PillNav items={navItems} activeHref={activeHref} initialLoadAnimation={false} />}
   </header>;
 }

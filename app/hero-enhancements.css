@@ -33,3 +33,69 @@
 @media (max-width: 700px) {
   .rotating-word { min-width: 2.3em; padding-inline: 8px; }
 }
+
+/* ==== Hero React Bits: ParticleText / TextType / SwarmCursor / Lanyard ==== */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.hero-content { z-index: 5; }
+.hero-caption { z-index: 5; }
+
+.hero-particle-title.particle-text {
+  width: min(78vw, 980px);
+  height: clamp(120px, 18vw, 200px);
+  min-height: 0;
+  margin: 26px 0 20px;
+  font-family: var(--font-main);
+}
+
+.hero-particle-title .particle-text__canvas { cursor: crosshair; }
+
+.hero-cursor-grid.cursor-grid {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 3;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.hero-lanyard {
+  position: absolute;
+  top: clamp(90px, 14vh, 150px);
+  right: clamp(24px, 5vw, 80px);
+  width: clamp(320px, 30vw, 470px);
+  height: clamp(430px, 64vh, 640px);
+  z-index: 4;
+  pointer-events: none;
+}
+
+.hero-lanyard .lanyard-wrapper { height: 100%; pointer-events: auto; }
+
+.hero-sentence { min-height: 1.7em; }
+
+@media (max-width: 700px) {
+  .hero-particle-title.particle-text {
+    width: 88vw;
+    height: clamp(96px, 18vw, 150px);
+    margin: 18px 0 16px;
+  }
+  .hero-sentence { font-size: 18px; min-height: 3.4em; }
+  .hero-lanyard {
+    top: auto;
+    bottom: 16px;
+    right: 16px;
+    width: 200px;
+    height: 250px;
+  }
+}

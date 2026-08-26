@@ -1,0 +1,163 @@
+/* ==== 文件夹入口（替代 ScrollStack 抽卡） ==== */
+.folder-group {
+  border: 1px solid var(--ink);
+  border-radius: 30px;
+  background: #fdfcf7;
+  overflow: hidden;
+  transition: box-shadow .35s ease, border-color .35s ease;
+}
+
+.folder-group:hover {
+  box-shadow: 0 24px 60px rgba(26, 28, 26, .14);
+}
+
+.folder-group.is-open {
+  border-color: var(--ink);
+  box-shadow: 0 24px 60px rgba(26, 28, 26, .12);
+}
+
+.folder-group__trigger {
+  display: flex;
+  align-items: center;
+  gap: clamp(24px, 4vw, 64px);
+  width: 100%;
+  padding: clamp(20px, 4vw, 42px);
+  cursor: pointer;
+  user-select: none;
+}
+
+.folder-group__visual {
+  flex: 0 0 auto;
+  width: 170px;
+  height: 136px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding-top: 12px;
+}
+
+/* 让文件夹的纸片能展示内容编号 */
+.folder-group__visual .folder .paper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.folder-group__copy {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.folder-group__eyebrow {
+  align-items: center;
+  display: flex;
+  font: 11px Consolas, monospace;
+  gap: 9px;
+  letter-spacing: .1em;
+  margin: 0 0 14px;
+  text-transform: uppercase;
+}
+
+.folder-group__eyebrow span {
+  border-radius: 50%;
+  height: 8px;
+  width: 8px;
+}
+
+.folder-group__note {
+  font: 500 clamp(24px, 3vw, 40px)/1.18 var(--font-main);
+  letter-spacing: .01em;
+  margin: 0 0 14px;
+  max-width: 30ch;
+}
+
+.folder-group__meta {
+  color: rgba(26, 28, 26, .55);
+  font: 12px Consolas, monospace;
+  letter-spacing: .05em;
+}
+
+.folder-group__chevron {
+  align-items: center;
+  background: var(--ink);
+  border-radius: 50%;
+  color: var(--paper);
+  display: flex;
+  flex: 0 0 auto;
+  height: 46px;
+  justify-content: center;
+  transition: transform .45s cubic-bezier(.16, .88, .4, 1);
+  width: 46px;
+}
+
+.folder-group.is-open .folder-group__chevron {
+  transform: rotate(180deg);
+}
+
+/* 展开面板：grid-rows 平滑高度过渡，避免卡顿测量 */
+.folder-group__panel {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows .62s cubic-bezier(.16, .88, .4, 1);
+}
+
+.folder-group.is-open .folder-group__panel {
+  grid-template-rows: 1fr;
+}
+
+.folder-group__inner {
+  overflow: hidden;
+  min-height: 0;
+}
+
+.folder-group__inner > * + * {
+  margin-top: clamp(18px, 3vw, 34px);
+}
+
+.folder-group__inner .showcase-card,
+.folder-group__inner .category-card {
+  margin: 0;
+  border-radius: 28px;
+}
+
+/* 纸片内容 */
+.folder-paper-badge {
+  align-items: center;
+  background: var(--ink);
+  border-radius: 999px;
+  color: var(--paper);
+  display: inline-flex;
+  font: 700 12px Consolas, monospace;
+  height: 36px;
+  justify-content: center;
+  width: 36px;
+}
+
+.folder-group__inner .showcase-note {
+  margin-top: 18px;
+}
+
+@media (max-width: 700px) {
+  .folder-group__trigger {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 18px;
+    padding: 22px;
+  }
+  .folder-group__visual {
+    width: 120px;
+    height: 96px;
+  }
+  .folder-group__visual .folder {
+    transform: scale(1.15);
+    transform-origin: top left;
+  }
+  .folder-group__note {
+    font-size: 26px;
+  }
+  .folder-group__chevron {
+    align-self: flex-end;
+    height: 40px;
+    width: 40px;
+  }
+}
