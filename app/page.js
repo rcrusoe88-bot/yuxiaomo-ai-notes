@@ -18,7 +18,7 @@ export default function HomePage() {
       <div className="hero-grid" />
       <div className="hero-content">
         <p className="eyebrow"><span />REALITY ENGINE / AI BUILDER / 2026</p>
-        <h1><span className="hero-title-script">我是余小莫</span><br /><em>让 AI 落地</em></h1>
+        <h1><span className="hero-title-script">余小莫的</span><br /><em>AI笔记</em></h1>
         <p className="hero-sentence">生物制药工艺开发 · 公众号「信使引擎」主理人 · 把 <RotatingWord /> 连成闭环。</p>
         <a className="scroll-link" href="#work">看看我在做什么 ↘</a>
       </div>

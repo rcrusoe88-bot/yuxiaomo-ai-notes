@@ -8,7 +8,7 @@
 </p>
 
 <p align="center">
-  <img src="https://github-readme-stats-eight-theta.vercel.app/api/pin/?username=rcrusoe88-bot&repo=yuxiaomo-ai-notes&theme=vue&show_owner=true" alt="yuxiaomo-ai-notes 仓库数据">
+  <img src="./docs/home-preview.jpg" alt="余小莫的AI笔记首页预览">
 </p>
 
 ## 🌐 在线访问

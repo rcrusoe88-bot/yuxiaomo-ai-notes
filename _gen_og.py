@@ -6,7 +6,7 @@ PAPER = (245, 242, 233)
 INK = (26, 28, 26)
 CORAL = (229, 92, 69)
 
-SHOUJIN = "app/fonts/HYShouJinShuF.ttf"
+ZHENGKAI = "app/fonts/Hanchan-Zhengkai-Big5.ttf"
 PRETESTO = "app/fonts/PreTesto-Italic.ttf"
 
 img = Image.new("RGB", (W, H), PAPER)
@@ -18,12 +18,12 @@ font_eyebrow = ImageFont.truetype(PRETESTO, 26)
 d.text((110, 82), "REALITY ENGINE / AI BUILDER / 2026", font=font_eyebrow, fill=INK)
 
 # Title: 让 AI 落地 — shared baseline, AI in coral PreTesto
-f = ImageFont.truetype(SHOUJIN, 150)
+font_main = ImageFont.truetype(ZHENGKAI, 150)
 fp = ImageFont.truetype(PRETESTO, 205)
 segments = [
-    ("让 ", f, INK),
+    ("让 ", font_main, INK),
     ("AI", fp, CORAL),
-    (" 落地", f, INK),
+    (" 落地", font_main, INK),
 ]
 # use anchor='ls' (left baseline) to align; measure widths
 widths = [d.textlength(t, font=ft) for t, ft, _ in segments]
@@ -35,7 +35,7 @@ for (t, ft, col), w in zip(segments, widths):
     x += w
 
 # Subtitle
-font_sub = ImageFont.truetype(SHOUJIN, 40)
+font_sub = ImageFont.truetype(ZHENGKAI, 40)
 sub = "生物制药工艺开发 · 公众号「信使引擎」主理人"
 wsub = d.textlength(sub, font=font_sub)
 d.text(((W - wsub) / 2, 435), sub, font=font_sub, fill=INK)

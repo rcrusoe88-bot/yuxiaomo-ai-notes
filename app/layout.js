@@ -32,10 +32,10 @@ export const metadata = {
   appleWebApp: { title: '余小莫 · 让 AI 落地', capable: true, statusBarStyle: 'default' }
 };
 
-const shoujin = localFont({
-  src: './fonts/HYShouJinShuF.ttf',
+const zhengkai = localFont({
+  src: './fonts/Hanchan-Zhengkai-Big5.ttf',
   weight: '400',
-  variable: '--font-shoujin',
+  variable: '--font-zhengkai',
   display: 'swap'
 });
 
@@ -47,5 +47,5 @@ const pretesto = localFont({
 });
 
 export default function RootLayout({ children }) {
-  return <html lang="zh-CN" className={`${pretesto.variable} ${shoujin.variable}`}><body suppressHydrationWarning>{children}</body></html>;
+  return <html lang="zh-CN" className={`${pretesto.variable} ${zhengkai.variable}`}><body suppressHydrationWarning>{children}</body></html>;
 }
