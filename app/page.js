@@ -8,7 +8,6 @@ import Particles from '../components/Particles';
 import ParticleText from '../components/ParticleText/ParticleText';
 import TextType from '../components/TextType/TextType';
 import CursorGrid from '../components/CursorGrid/CursorGrid';
-import Lanyard from '../components/Lanyard/Lanyard';
 import FolderGroup from '../components/FolderGroup/FolderGroup';
 
 const heroLines = [
@@ -70,15 +69,6 @@ export default function HomePage() {
       clickPulse
       pulseSpeed={560}
     />
-    <div className="hero-lanyard">
-      <Lanyard
-        position={[0, 0, 26]}
-        gravity={[0, -40, 0]}
-        frontImage={withBase('/xiaomo-card.png')}
-        imageFit="cover"
-        lanyardWidth={0.92}
-      />
-    </div>
     <div className="hero-content">
       <p className="eyebrow"><span />REALITY ENGINE / AI BUILDER / 2026</p>
       <h1 className="sr-only">余小莫的AI笔记</h1>

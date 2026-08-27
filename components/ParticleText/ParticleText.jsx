@@ -277,7 +277,9 @@ const ParticleText = ({
 
       const imageData = offCtx.getImageData(0, 0, offscreen.width, offscreen.height);
       const targets = [];
-      const step = Math.max(2, Math.floor(density));
+      // 取样步长跟随字号缩放：手机字号小、笔画细，步长必须变小才能把汉字描实，
+      // 否则粒子会跳空笔画导致标题破碎难认。
+      const step = Math.max(2, Math.min(5, Math.round(resolvedSize / 22)));
 
       for (let y = 0; y < offscreen.height; y += step) {
         for (let x = 0; x < offscreen.width; x += step) {
@@ -292,7 +294,9 @@ const ParticleText = ({
         }
       }
 
-      const maxParticles = Math.max(900, Math.min(5200, Math.floor((width * height) / 90)));
+      // 手机端文字面积小，若仍按面积/90 会得出不足 900 的粒子数并被下限钳制，
+      // 导致标题粒子过稀、字形残缺。这里提高下限，保证小面积文字也有足够密度。
+      const maxParticles = Math.max(1600, Math.min(5600, Math.floor((width * height) / 70)));
       const stride = Math.max(1, Math.ceil(targets.length / maxParticles));
       const baseRgb = hexToRgb(color);
       const highlightRgb = hexToRgb(highlightColor);

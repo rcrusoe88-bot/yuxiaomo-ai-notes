@@ -28,12 +28,17 @@
 
 .folder-group__visual {
   flex: 0 0 auto;
-  width: 170px;
-  height: 136px;
+  width: 128px;
+  height: 104px;
   display: flex;
   align-items: flex-start;
-  justify-content: center;
-  padding-top: 12px;
+  justify-content: flex-start;
+  padding-top: 10px;
+}
+
+/* 桌面端让文件夹以左上角为基准缩放，避免整体向下/向上偏移后挡住纸片 */
+.folder-group__visual > div {
+  transform-origin: top left;
 }
 
 /* 让文件夹的纸片能展示内容编号 */

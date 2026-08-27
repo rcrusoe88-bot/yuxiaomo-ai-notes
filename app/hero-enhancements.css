@@ -70,19 +70,6 @@
   overflow: hidden;
 }
 
-.hero-lanyard {
-  position: absolute;
-  top: auto;
-  bottom: clamp(60px, 8vh, 100px);
-  right: clamp(24px, 5vw, 80px);
-  width: clamp(320px, 30vw, 470px);
-  height: clamp(430px, 64vh, 640px);
-  z-index: 4;
-  pointer-events: none;
-}
-
-.hero-lanyard .lanyard-wrapper { height: 100%; pointer-events: auto; }
-
 .hero-sentence { min-height: 1.7em; }
 
 @media (max-width: 700px) {
@@ -91,12 +78,20 @@
     height: clamp(104px, 26vw, 160px);
     margin: 22px 0 18px;
   }
-  .hero-sentence { font-size: 17px; min-height: 5em; line-height: 1.65; }
-  .hero-lanyard {
-    top: auto;
-    bottom: 22px;
-    right: 20px;
-    width: 200px;
-    height: 250px;
+  .hero-content {
+    left: 24px;
+    right: 24px;
+    width: auto;
+  }
+  .hero-sentence {
+    display: block;
+    width: 100%;
+    font-size: 17px;
+    min-height: 5em;
+    line-height: 1.65;
+  }
+  .scroll-link {
+    display: block;
+    margin-top: 22px;
   }
 }

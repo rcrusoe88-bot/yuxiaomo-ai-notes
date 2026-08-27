@@ -36,7 +36,7 @@ export default function FolderGroup({
         }}
       >
         <div className="folder-group__visual">
-          <Folder color={color} size={1.7} items={papers} open={open} onToggle={toggle} />
+          <Folder color={color} size={1.15} items={papers} open={open} onToggle={toggle} />
         </div>
         <div className="folder-group__copy">
           <p className="folder-group__eyebrow">

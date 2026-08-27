@@ -28,29 +28,29 @@
 }
 
 .folder.open .paper:nth-child(1) {
-  transform: translate(-120%, -70%) rotateZ(-15deg);
+  transform: translate(-112%, -42%) rotateZ(-15deg);
 }
 
 .folder.open .paper:nth-child(1):hover {
-  transform: translate(-120%, -70%) rotateZ(-15deg) scale(1.1);
+  transform: translate(-112%, -42%) rotateZ(-15deg) scale(1.1);
 }
 
 .folder.open .paper:nth-child(2) {
-  transform: translate(10%, -70%) rotateZ(15deg);
+  transform: translate(14%, -42%) rotateZ(15deg);
   height: 80%;
 }
 
 .folder.open .paper:nth-child(2):hover {
-  transform: translate(10%, -70%) rotateZ(15deg) scale(1.1);
+  transform: translate(14%, -42%) rotateZ(15deg) scale(1.1);
 }
 
 .folder.open .paper:nth-child(3) {
-  transform: translate(-50%, -100%) rotateZ(5deg);
+  transform: translate(-50%, -58%) rotateZ(5deg);
   height: 80%;
 }
 
 .folder.open .paper:nth-child(3):hover {
-  transform: translate(-50%, -100%) rotateZ(5deg) scale(1.1);
+  transform: translate(-50%, -58%) rotateZ(5deg) scale(1.1);
 }
 
 .folder.open .folder__front {
