@@ -14,7 +14,7 @@ const ClickSpark = ({
 }) => {
   const canvasRef = useRef(null);
   const sparksRef = useRef([]);
-  const startTimeRef = useRef(null);
+  const startLoopRef = useRef(null);
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -71,11 +71,9 @@ const ClickSpark = ({
     const ctx = canvas.getContext('2d');
 
     let animationId;
+    let running = false;
 
     const draw = timestamp => {
-      if (!startTimeRef.current) {
-        startTimeRef.current = timestamp;
-      }
       ctx.clearRect(0, 0, canvas.width, canvas.height);
 
       sparksRef.current = sparksRef.current.filter(spark => {
@@ -105,13 +103,23 @@ const ClickSpark = ({
         return true;
       });
 
+      // 全部火花结束后停帧，避免常驻空转耗 CPU。
+      if (sparksRef.current.length > 0) {
+        animationId = requestAnimationFrame(draw);
+      } else {
+        running = false;
+      }
+    };
+
+    startLoopRef.current = () => {
+      if (running) return;
+      running = true;
       animationId = requestAnimationFrame(draw);
     };
 
-    animationId = requestAnimationFrame(draw);
-
     return () => {
       cancelAnimationFrame(animationId);
+      startLoopRef.current = null;
     };
   }, [sparkColor, sparkSize, sparkRadius, sparkCount, duration, easeFunc, extraScale]);
 
@@ -131,6 +139,7 @@ const ClickSpark = ({
     }));
 
     sparksRef.current.push(...newSparks);
+    startLoopRef.current?.();
   };
 
   return (

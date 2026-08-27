@@ -74,9 +74,8 @@ const removeBackground = (context, width, height) => {
 };
 
 export default function HeroMascot({ src, poster, className = '' }) {
-  const [isMobile, setIsMobile] = useState(
-    () => typeof window !== 'undefined' && window.innerWidth < 768
-  );
+  // 首帧固定 false（SSR/CSR 一致），真实值在 effect 中按视口宽度计算。
+  const [isMobile, setIsMobile] = useState(false);
   const [aspect, setAspect] = useState(DEFAULT_ASPECT);
   const [pos, setPos] = useState(null);
   const videoRef = useRef(null);
@@ -96,13 +95,16 @@ export default function HeroMascot({ src, poster, className = '' }) {
 
     const context = canvas.getContext('2d', { alpha: true });
     let stopped = false;
+    let started = false;
     let animationFrame;
     let videoFrame;
 
     const draw = () => {
       if (stopped) return;
       if (video.videoWidth && video.videoHeight && video.readyState >= 2) {
-        const renderWidth = Math.min(video.videoWidth, 720);
+        // 人物实际显示宽度只有 ~220px（retina 取 2x），440 已足够清晰；
+        // 更小的画布能显著降低每帧 getImageData + flood fill 的成本。
+        const renderWidth = Math.min(video.videoWidth, 440);
         const renderHeight = Math.round(renderWidth * video.videoHeight / video.videoWidth);
         if (canvas.width !== renderWidth || canvas.height !== renderHeight) {
           canvas.width = renderWidth;
@@ -122,6 +124,9 @@ export default function HeroMascot({ src, poster, className = '' }) {
     };
 
     const start = () => {
+      // loadedmetadata 与 canplay 可能先后到达，只允许启动一条绘制链。
+      if (started) return;
+      started = true;
       if (video.videoWidth && video.videoHeight) {
         setAspect(video.videoHeight / video.videoWidth);
       }

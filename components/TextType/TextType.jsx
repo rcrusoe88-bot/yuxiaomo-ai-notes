@@ -32,6 +32,11 @@ const TextType = ({
   const [isVisible, setIsVisible] = useState(!startOnVisible);
   const cursorRef = useRef(null);
   const containerRef = useRef(null);
+  // 用 ref 持有回调，避免父组件传内联函数时 effect 重跑重启打字。
+  const onSentenceCompleteRef = useRef(onSentenceComplete);
+  useEffect(() => {
+    onSentenceCompleteRef.current = onSentenceComplete;
+  }, [onSentenceComplete]);
 
   const textArray = useMemo(() => (Array.isArray(text) ? text : [text]), [text]);
 
@@ -67,13 +72,16 @@ const TextType = ({
   useEffect(() => {
     if (showCursor && cursorRef.current) {
       gsap.set(cursorRef.current, { opacity: 1 });
-      gsap.to(cursorRef.current, {
+      const tween = gsap.to(cursorRef.current, {
         opacity: 0,
         duration: cursorBlinkDuration,
         repeat: -1,
         yoyo: true,
         ease: 'power2.inOut'
       });
+      return () => {
+        tween.kill();
+      };
     }
   }, [showCursor, cursorBlinkDuration]);
 
@@ -89,18 +97,18 @@ const TextType = ({
     const executeTypingAnimation = () => {
       if (isDeleting) {
         if (displayedText === '') {
-          setIsDeleting(false);
-          if (currentTextIndex === textArray.length - 1 && !loop) {
-            return;
-          }
-
-          if (onSentenceComplete) {
-            onSentenceComplete(textArray[currentTextIndex], currentTextIndex);
-          }
-
-          setCurrentTextIndex(prev => (prev + 1) % textArray.length);
-          setCurrentCharIndex(0);
-          timeout = setTimeout(() => {}, pauseDuration);
+          // 删完一句后停顿 pauseDuration，再回调并切换到下一句。
+          timeout = setTimeout(() => {
+            if (onSentenceCompleteRef.current) {
+              onSentenceCompleteRef.current(textArray[currentTextIndex], currentTextIndex);
+            }
+            setIsDeleting(false);
+            if (currentTextIndex === textArray.length - 1 && !loop) {
+              return;
+            }
+            setCurrentTextIndex(prev => (prev + 1) % textArray.length);
+            setCurrentCharIndex(0);
+          }, pauseDuration);
         } else {
           timeout = setTimeout(() => {
             setDisplayedText(prev => prev.slice(0, -1));
@@ -144,8 +152,7 @@ const TextType = ({
     initialDelay,
     isVisible,
     reverseMode,
-    variableSpeed,
-    onSentenceComplete
+    variableSpeed
   ]);
 
   const shouldHideCursor =

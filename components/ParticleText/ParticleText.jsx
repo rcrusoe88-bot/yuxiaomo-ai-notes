@@ -89,6 +89,7 @@ const ParticleText = ({
     let buildId = 0;
     let gathering = false;
     let gatherStart = 0;
+    let lastPointerActivity = 0;
     let reducedMotion =
       window.matchMedia?.('(prefers-reduced-motion: reduce)').matches ?? false;
     let width = 0;
@@ -207,7 +208,20 @@ const ParticleText = ({
         gathering = false;
       }
 
-      animationFrame = window.requestAnimationFrame(render);
+      // 无动画可跑时停帧：gather 结束、无持续漂移、指针交互已收敛（留 700ms 回弹宽限）。
+      const settling = now - lastPointerActivity < 700;
+      const interacting = pointer.active && pointerRepel > 0 && repelRadius > 0;
+      const needsLoop =
+        gathering ||
+        settling ||
+        interacting ||
+        (!reducedMotion && idleDrift > 0);
+
+      if (needsLoop) {
+        animationFrame = window.requestAnimationFrame(render);
+      } else {
+        animationFrame = null;
+      }
     };
 
     const ensureRenderLoop = () => {
@@ -358,10 +372,13 @@ const ParticleText = ({
       pointer.x = event.clientX - rect.left;
       pointer.y = event.clientY - rect.top;
       pointer.active = true;
+      lastPointerActivity = performance.now();
+      ensureRenderLoop();
     };
 
     const handlePointerLeave = () => {
       pointer.active = false;
+      lastPointerActivity = performance.now();
     };
 
     const handlePointerEnter = event => {
