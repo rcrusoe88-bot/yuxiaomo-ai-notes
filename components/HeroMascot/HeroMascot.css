@@ -5,20 +5,22 @@
   isolation: isolate;
 }
 
-.hero-mascot__img {
-  display: block;
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-  will-change: transform;
-  animation: hero-mascot-float 5s ease-in-out infinite;
+.hero-mascot__source {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+  pointer-events: none;
 }
 
-.hero-mascot__canvas,
-.hero-mascot__canvas canvas {
+.hero-mascot__canvas {
   display: block;
   width: 100%;
   height: 100%;
+  background: transparent;
+  animation: hero-mascot-float 5s ease-in-out infinite;
+  filter: drop-shadow(0 9px 12px rgba(26, 28, 26, .14));
+  will-change: transform;
 }
 
 @keyframes hero-mascot-float {
@@ -32,7 +34,7 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .hero-mascot__img {
+  .hero-mascot__canvas {
     animation: none;
   }
 }

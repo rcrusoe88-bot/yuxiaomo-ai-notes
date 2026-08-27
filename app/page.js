@@ -106,7 +106,7 @@ export default function HomePage() {
       <a className="scroll-link" href="#work">看看我在做什么 ↘</a>
     </div>
     <p className="hero-caption">
-      <HeroMascot src={withBase('/ip-mascot.png')} />
+      <HeroMascot src={withBase('/ip-mascot.mp4')} poster={withBase('/ip-mascot.png')} />
       <span>01</span>用 AI Skill 打通公众号创作，用代码造物料 ERP。
     </p>
   </section>
