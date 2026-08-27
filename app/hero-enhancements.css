@@ -56,6 +56,8 @@
   min-height: 0;
   margin: 26px 0 20px;
   font-family: var(--font-main);
+  /* 允许 IP 人物越出标题容器，悬浮在标题右端“笔记”上方。 */
+  overflow: visible;
 }
 
 .hero-particle-title .particle-text__canvas { cursor: crosshair; }

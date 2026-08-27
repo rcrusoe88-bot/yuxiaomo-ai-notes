@@ -9,6 +9,7 @@ import ParticleText from '../components/ParticleText/ParticleText';
 import TextType from '../components/TextType/TextType';
 import CursorGrid from '../components/CursorGrid/CursorGrid';
 import FolderGroup from '../components/FolderGroup/FolderGroup';
+import HeroMascot from '../components/HeroMascot/HeroMascot';
 
 const heroLines = [
   '生物制药工艺开发 · 公众号「信使引擎」主理人 · 把 工艺 连成闭环。',
@@ -87,7 +88,7 @@ export default function HomePage() {
         idleDrift={0.8}
        trigger="hover"
         fontSize="clamp(44px, 11vw, 150px)"
-       fontWeight={900}
+        fontWeight={900}
         glow
       />
       <TextType
@@ -104,7 +105,10 @@ export default function HomePage() {
       />
       <a className="scroll-link" href="#work">看看我在做什么 ↘</a>
     </div>
-    <p className="hero-caption"><span>01</span>用 AI Skill 打通公众号创作，用代码造物料 ERP。</p>
+    <p className="hero-caption">
+      <HeroMascot src={withBase('/ip-mascot.png')} />
+      <span>01</span>用 AI Skill 打通公众号创作，用代码造物料 ERP。
+    </p>
   </section>
   <section className="intro-strip">这里没有标准答案，只有正在发生的工作。</section>
 
