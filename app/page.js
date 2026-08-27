@@ -5,7 +5,7 @@ import { site, withBase } from '../lib/site';
 import SiteHeader from '../components/SiteHeader';
 import ShowcaseCard from '../components/ShowcaseCard';
 import Particles from '../components/Particles';
-import ParticleText from '../components/ParticleText/ParticleText';
+import PalettePreview from '../components/PalettePreview';
 import TextType from '../components/TextType/TextType';
 import CursorGrid from '../components/CursorGrid/CursorGrid';
 import FolderGroup from '../components/FolderGroup/FolderGroup';
@@ -21,22 +21,25 @@ const heroLines = [
 // 每个文件夹右侧插图。图片来自桌面「卡片」文件夹，1-10 按主题语义映射：
 // 作品 5 张 + 产品 1 张 + 笔记分类 4 张，恰好一一对应。
 const showcaseImages = {
-  'wechat-article-html': '/cards/6.png',
-  'wechat-cover-design': '/cards/3.png',
-  'wechat-title-summary': '/cards/2.png',
-  'mrna-cmc-web-search': '/cards/4.png',
-  'ppt-requirements-discovery': '/cards/9.png',
-  'wsj-erp-system': '/cards/1.png'
+  'wechat-article-html': '/cards/6.webp',
+  'wechat-cover-design': '/cards/3.webp',
+  'wechat-title-summary': '/cards/2.webp',
+  'mrna-cmc-web-search': '/cards/4.webp',
+  'ppt-requirements-discovery': '/cards/9.webp',
+  'wsj-erp-system': '/cards/1.webp'
 };
 
 const noteImages = {
-  codex: '/cards/7.png',
-  claude: '/cards/8.png',
-  reasonix: '/cards/10.png',
-  workbuddy: '/cards/5.png'
+  codex: '/cards/7.webp',
+  claude: '/cards/8.webp',
+  reasonix: '/cards/10.webp',
+  workbuddy: '/cards/5.webp'
 };
 
 const paperBadge = text => <span className="folder-paper-badge">{text}</span>;
+
+const categoryIcon = name =>
+  name === 'Codex' ? 'C>' : name === 'Claude' ? '✦' : name === 'Reasonix' ? 'R/' : 'W.';
 
 export default function HomePage() {
   const notes = getAllNotes();
@@ -45,8 +48,8 @@ export default function HomePage() {
 
   const projectPapers = projects.slice(0, 3).map(p => paperBadge(p.index));
   const productPapers = products.slice(0, 3).map(p => paperBadge(p.index));
-  const notePapers = Object.entries(categories).slice(0, 3).map(([slug, category]) =>
-    paperBadge(category.name === 'Codex' ? 'C>' : category.name === 'Claude' ? '✦' : 'R/')
+  const notePapers = Object.entries(categories).slice(0, 3).map(([, category]) =>
+    paperBadge(categoryIcon(category.name))
   );
 
   return <main>
@@ -73,13 +76,11 @@ export default function HomePage() {
     <div className="hero-content">
       <p className="eyebrow"><span />REALITY ENGINE / AI BUILDER / 2026</p>
       <h1 className="sr-only">余小莫的AI笔记</h1>
-      <ParticleText
+      <PalettePreview
         className="hero-particle-title"
         text="余小莫的AI笔记"
         particleSize={2.6}
         density={5}
-        color="#1a1c1a"
-        highlightColor="#e55c45"
         scatter={200}
         gatherDuration={1800}
         stagger={260}
@@ -105,10 +106,10 @@ export default function HomePage() {
       />
       <a className="scroll-link" href="#work">看看我在做什么 ↘</a>
     </div>
-    <p className="hero-caption">
-      <HeroMascot src={withBase('/ip-mascot.mp4')} poster={withBase('/ip-mascot.png')} />
+    <div className="hero-caption">
+      <HeroMascot src={withBase('/ip-mascot.mp4')} poster={withBase('/ip-mascot.webp')} />
       <span>01</span>用 AI Skill 打通公众号创作，用代码造物料 ERP。
-    </p>
+    </div>
   </section>
   <section className="intro-strip">这里没有标准答案，只有正在发生的工作。</section>
 
@@ -120,10 +121,10 @@ export default function HomePage() {
           index="01"
           title="我的作品"
           note="公众号创作链路与工艺研究 Skill，把想法做成能直接落地的工具。"
-          meta="共 5 项"
+          meta={`共 ${projects.length} 项`}
           papers={projectPapers}
         >
-          {projects.map(item => <ShowcaseCard key={item.slug} item={item} image={withBase(showcaseImages[item.slug] || '/cards/1.png')} />)}
+          {projects.map(item => <ShowcaseCard key={item.slug} item={item} image={withBase(showcaseImages[item.slug] || '/cards/1.webp')} />)}
         </FolderGroup>
       </div>
     </section>
@@ -136,10 +137,10 @@ export default function HomePage() {
           index="02"
           title="我的产品"
           note="正在用 AI 亲手搭建的物料管理 ERP，持续在真实环境里打磨。"
-          meta="共 1 项"
+          meta={`共 ${products.length} 项`}
           papers={productPapers}
         >
-          {products.map(item => <ShowcaseCard key={item.slug} item={item} image={withBase(showcaseImages[item.slug] || '/cards/1.png')} />)}
+          {products.map(item => <ShowcaseCard key={item.slug} item={item} image={withBase(showcaseImages[item.slug] || '/cards/1.webp')} />)}
         </FolderGroup>
       </div>
       <p className="showcase-note">更多产品正在建设中，会持续在这里更新。</p>
@@ -153,17 +154,17 @@ export default function HomePage() {
           index="03"
           title="我的笔记"
           note="按 AI 工具整理的创作与思考记录，从方法到真实落地的过程。"
-          meta="共 4 个分类"
+          meta={`共 ${Object.keys(categories).length} 个分类`}
           papers={notePapers}
         >
           {Object.entries(categories).map(([slug, category]) => (
             <Link className={`category-card ${category.tone}`} href={`/notes/${slug}`}>
               <div className="category-card__main">
-                <div className="app-icon">{category.name === 'Codex' ? 'C>' : category.name === 'Claude' ? '✦' : category.name === 'Reasonix' ? 'R/' : 'W.'}</div>
+                <div className="app-icon">{categoryIcon(category.name)}</div>
                 <div className="category-copy"><p>{category.index} / {category.label}</p><h3>{category.name}</h3><span>{category.description}</span></div>
                 <i>↗</i>
               </div>
-              <div className="category-card__media"><img src={withBase(noteImages[slug] || '/cards/7.png')} alt={`${category.name} 笔记封面`} loading="lazy" /></div>
+              <div className="category-card__media"><img src={withBase(noteImages[slug] || '/cards/7.webp')} alt={`${category.name} 笔记封面`} loading="lazy" /></div>
             </Link>
           ))}
         </FolderGroup>
@@ -182,7 +183,7 @@ export default function HomePage() {
       <div className="contact-block">
         <a className="contact-item" href={site.github} target="_blank" rel="noreferrer"><small>GITHUB</small><strong>yuxiaomo-ai-notes</strong><i>↗</i></a>
         <a className="contact-item" href={`mailto:${site.email}`}><small>EMAIL</small><strong>{site.email}</strong><i>↗</i></a>
-        <a className="contact-item" href={site.wechat.url} target="_blank" rel="noreferrer"><small>WECHAT</small><strong>公众号 · 信使引擎</strong><i>↗</i></a>
+        <div className="contact-item"><small>WECHAT</small><strong>公众号 · 信使引擎</strong></div>
       </div>
     </section>
     <footer>余小莫的个人站 <span>© 2026 · {site.tagline}</span></footer>
