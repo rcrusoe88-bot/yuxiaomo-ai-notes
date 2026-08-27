@@ -3,6 +3,7 @@ import './globals.css';
 import './hero-enhancements.css';
 import { site, absoluteFileUrl } from '../lib/site';
 import ClickSpark from '../components/ClickSpark/ClickSpark';
+import WaterWakeCursor from '../components/WaterWakeCursor/WaterWakeCursor';
 
 export const metadata = {
   metadataBase: new URL(site.website),
@@ -48,5 +49,5 @@ const pretesto = localFont({
 });
 
 export default function RootLayout({ children }) {
-  return <html lang="zh-CN" className={`${pretesto.variable} ${zhengkai.variable}`}><body suppressHydrationWarning><ClickSpark sparkColor="#A35C8F" sparkSize={18} sparkRadius={34} sparkCount={12} duration={520} extraScale={1.05}>{children}</ClickSpark></body></html>;
+  return <html lang="zh-CN" className={`${pretesto.variable} ${zhengkai.variable}`}><body suppressHydrationWarning><ClickSpark sparkColor="#A35C8F" sparkSize={18} sparkRadius={34} sparkCount={12} duration={520} extraScale={1.05}><WaterWakeCursor />{children}</ClickSpark></body></html>;
 }
