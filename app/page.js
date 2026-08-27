@@ -180,7 +180,7 @@ export default function HomePage() {
       <h2>我相信，<br />把真实问题<br />交给 <em>AI</em> 拆解。</h2>
       <p>我是余小莫，一名生物制药工艺开发工程师。白天做 mRNA / LNP 工艺，业余用 AI Agent skill 把公众号「信使引擎」的创作流程做成闭环，也正用 AI 亲手搭建一套物料管理 ERP。这里记录我让 AI 落地的每一件真实作品。</p>
       <div className="contact-block">
-        <a className="contact-item" href={site.github} target="_blank" rel="noreferrer"><small>GITHUB</small><strong>rcrusoe88-bot</strong><i>↗</i></a>
+        <a className="contact-item" href={site.github} target="_blank" rel="noreferrer"><small>GITHUB</small><strong>yuxiaomo-ai-notes</strong><i>↗</i></a>
         <a className="contact-item" href={`mailto:${site.email}`}><small>EMAIL</small><strong>{site.email}</strong><i>↗</i></a>
         <a className="contact-item" href={site.wechat.url} target="_blank" rel="noreferrer"><small>WECHAT</small><strong>公众号 · 信使引擎</strong><i>↗</i></a>
       </div>
