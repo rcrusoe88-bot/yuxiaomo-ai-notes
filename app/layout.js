@@ -34,15 +34,18 @@ export const metadata = {
   appleWebApp: { title: '余小莫的AI笔记', capable: true, statusBarStyle: 'default' }
 };
 
+// preload:false：中文字体 9MB+，preload 会阻塞首屏；配合 display:'swap'
+// 让文字先以系统字体渲染，字体在后台加载完成后替换。
 const zhengkai = localFont({
-  src: './fonts/Hanchan-Zhengkai-Big5.ttf',
+  src: './fonts/Hanchan-Zhengkai-Big5.woff2',
   weight: '400',
   variable: '--font-zhengkai',
-  display: 'swap'
+  display: 'swap',
+  preload: false
 });
 
 const pretesto = localFont({
-  src: './fonts/PreTesto-Italic.ttf',
+  src: './fonts/PreTesto-Italic.woff2',
   weight: '200 700',
   variable: '--font-pretesto',
   display: 'swap'
