@@ -1,10 +1,14 @@
 # 部署说明
 
-这是一个 Next.js 静态导出项目，不需要数据库、服务端 API 或环境变量。
+这是一个 Next.js 静态导出项目，不需要数据库、服务端 API 或私密环境变量。
 
-## 直接发布
+## GitHub Pages（主站，自动部署）
 
-将 `out/` 目录中的全部文件上传到任意静态网站托管服务的站点根目录即可，例如腾讯云 COS 静态网站、Cloudflare Pages 或 Vercel 静态托管。
+push 到 `main` 后由 [.github/workflows/deploy.yml](.github/workflows/deploy.yml) 自动构建并发布，无需手动操作。构建时 workflow 已设置 `GH_PAGES=1`，它触发 `next.config.mjs` 中的 `basePath: /yuxiaomo-ai-notes`，让所有资源带上仓库名前缀。
+
+## 直接发布（备用通道，如腾讯云 CloudBase）
+
+将 `out/` 目录中的全部文件上传到站点根目录即可，例如腾讯云 COS 静态网站、Cloudflare Pages 或 Vercel 静态托管。**此通道不要设置 `GH_PAGES`**，保持空前缀（站点部署在域名根路径）。
 
 ## 重新构建
 
@@ -12,7 +16,8 @@
 
 ```bash
 npm ci
-npm run build
+npm run build            # 本地 / CloudBase：空前缀
+GH_PAGES=1 npm run build # GitHub Pages：带 /yuxiaomo-ai-notes 前缀
 ```
 
 构建完成后发布 `out/` 目录。不要使用 `npm run start`，因为站点已配置为静态导出。

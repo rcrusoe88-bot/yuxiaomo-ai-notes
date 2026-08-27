@@ -2,13 +2,19 @@ import Link from 'next/link';
 import { compileMDX } from 'next-mdx-remote/rsc';
 import remarkGfm from 'remark-gfm';
 import { getAllProjects, getProjectBySlug } from '../../../lib/showcase';
+import { withBasePaths } from '../../../lib/site';
 
 export function generateStaticParams() { return getAllProjects().map(item => ({ slug: item.slug })); }
 
 export async function generateMetadata({ params }) {
   const { slug } = await params;
   const item = getProjectBySlug(slug);
-  return { title: item ? item.title : '作品不存在' };
+  if (!item) return { title: '作品不存在' };
+  return {
+    title: item.title,
+    description: item.summary,
+    openGraph: { title: item.title, description: item.summary, type: 'article' }
+  };
 }
 
 const Callout = ({ children }) => <aside className="callout">{children}</aside>;
@@ -17,7 +23,7 @@ export default async function WorkPage({ params }) {
   const { slug } = await params;
   const item = getProjectBySlug(slug);
   if (!item) return <main className="archive"><h1>作品不存在</h1></main>;
-  const { content } = await compileMDX({ source: item.source, options: { parseFrontmatter: true, mdxOptions: { remarkPlugins: [remarkGfm] } }, components: { Callout } });
+  const { content } = await compileMDX({ source: withBasePaths(item.source), options: { parseFrontmatter: true, mdxOptions: { remarkPlugins: [remarkGfm] } }, components: { Callout } });
   return <main className="article-page project-page">
     <Link className="back-link" href="/#work">← 回到作品</Link>
     <p className="article-meta">WORK / {item.index} / {item.year} / {item.status.toUpperCase()}</p>
