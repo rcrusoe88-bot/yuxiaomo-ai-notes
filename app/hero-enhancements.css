@@ -88,14 +88,14 @@
 @media (max-width: 700px) {
   .hero-particle-title.particle-text {
     width: 88vw;
-    height: clamp(96px, 18vw, 150px);
-    margin: 18px 0 16px;
+    height: clamp(104px, 26vw, 160px);
+    margin: 22px 0 18px;
   }
-  .hero-sentence { font-size: 18px; min-height: 3.4em; }
+  .hero-sentence { font-size: 17px; min-height: 5em; line-height: 1.65; }
   .hero-lanyard {
     top: auto;
-    bottom: 16px;
-    right: 16px;
+    bottom: 22px;
+    right: 20px;
     width: 200px;
     height: 250px;
   }

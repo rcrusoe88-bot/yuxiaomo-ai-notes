@@ -95,9 +95,9 @@ export default function HomePage() {
         pointerRepel={55}
         repelRadius={160}
         idleDrift={0.8}
-        trigger="hover"
-        fontSize="clamp(64px, 8vw, 150px)"
-        fontWeight={900}
+       trigger="hover"
+        fontSize="clamp(44px, 11vw, 150px)"
+       fontWeight={900}
         glow
       />
       <TextType

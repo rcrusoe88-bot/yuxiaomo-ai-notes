@@ -139,24 +139,37 @@
 
 @media (max-width: 700px) {
   .folder-group__trigger {
-    align-items: flex-start;
-    flex-direction: column;
-    gap: 18px;
-    padding: 22px;
+    align-items: center;
+    display: grid;
+    grid-template-columns: 96px minmax(0, 1fr) 44px;
+    gap: 16px;
+    padding: 20px;
   }
   .folder-group__visual {
-    width: 120px;
-    height: 96px;
+    width: 96px;
+    height: 80px;
+    padding-top: 0;
+    align-items: center;
+    justify-content: center;
   }
-  .folder-group__visual .folder {
-    transform: scale(1.15);
-    transform-origin: top left;
+  .folder-group__visual > div {
+    transform: scale(0.8) !important;
+    transform-origin: center;
   }
   .folder-group__note {
-    font-size: 26px;
+    font-size: 22px;
+    line-height: 1.3;
+    margin-bottom: 8px;
+  }
+  .folder-group__eyebrow {
+    margin-bottom: 10px;
+  }
+  .folder-group__meta {
+    font-size: 11px;
   }
   .folder-group__chevron {
-    align-self: flex-end;
+    justify-self: end;
+    align-self: center;
     height: 40px;
     width: 40px;
   }
