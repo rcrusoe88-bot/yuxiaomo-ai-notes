@@ -95,9 +95,9 @@ export default function HomePage() {
         as="p"
         className="hero-sentence"
         text={heroLines}
-        typingSpeed={72}
-        deletingSpeed={26}
-        pauseDuration={1600}
+        typingSpeed={110}
+        deletingSpeed={38}
+        pauseDuration={2200}
         showCursor
         cursorCharacter="|"
         startOnVisible
