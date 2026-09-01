@@ -105,3 +105,46 @@
   .brand { font-size: 16px; white-space: nowrap; }
   .brand i { display: none; }
 }
+/* Palette previews inspired by colors.xiaoxiaodong.ai traditional-color sets. */
+html[data-palette-preview="zi-teng-luo"] {
+  --coral: #8A4B9C;
+  --blue: #8076A3;
+  --yellow: #D8B0D8;
+}
+
+html[data-palette-preview="wei-zi"] {
+  --coral: #7E1671;
+  --blue: #8A6E8B;
+  --yellow: #D8B0C8;
+}
+
+html[data-palette-preview="dian-lan"] {
+  --coral: #4B0082;
+  --blue: #8076A3;
+  --yellow: #D1B3FF;
+}
+
+html[data-palette-preview] .category-card.coral {
+  background: var(--coral);
+}
+
+html[data-palette-preview] .hero-grid {
+  background-image: linear-gradient(rgba(26,28,26,.08) 1px, transparent 1px), linear-gradient(90deg, rgba(26,28,26,.08) 1px, transparent 1px);
+}
+html[data-palette-preview="olive-violet"] {
+  --paper: #6B8E23;
+  --ink: #22202E;
+  --coral: #BEC936;
+  --lime: #BACF65;
+  --blue: #BACF65;
+  --yellow: #BEC936;
+}
+
+html[data-palette-preview="wisteria-ochre"] {
+  --paper: #8076A3;
+  --ink: #D0DEAA;
+  --coral: #B8A5D2;
+  --lime: #D0DEAA;
+  --blue: #9B8AE8;
+  --yellow: #B8A5D2;
+}
