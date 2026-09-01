@@ -24,6 +24,12 @@
 
 .hero-grid { pointer-events: none; }
 
+.hero-particles { pointer-events: auto; }
+
+.hero-particles.particles-container {
+  cursor: crosshair;
+}
+
 @media (max-width: 700px) {
   .rotating-word { min-width: 2.3em; padding-inline: 8px; }
 }
@@ -52,6 +58,18 @@
   font-family: var(--font-main);
   /* 允许 IP 人物越出标题容器，悬浮在标题右端“笔记”上方。 */
   overflow: visible;
+}
+
+.hero-particle-title .particle-text__canvas { cursor: crosshair; }
+
+.hero-cursor-grid.cursor-grid {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 3;
+  pointer-events: none;
+  overflow: hidden;
 }
 
 /* TextType 会把 <p> 渲染为 inline-block；必须恢复块级，否则与 .scroll-link 挤进同一行盒导致重叠。 */
