@@ -7,7 +7,6 @@ import ShowcaseCard from '../components/ShowcaseCard';
 import Particles from '../components/Particles';
 import PalettePreview from '../components/PalettePreview';
 import TextType from '../components/TextType/TextType';
-import CursorGrid from '../components/CursorGrid/CursorGrid';
 import FolderGroup from '../components/FolderGroup/FolderGroup';
 import HeroMascot from '../components/HeroMascot/HeroMascot';
 
@@ -57,22 +56,6 @@ export default function HomePage() {
     <section className="hero">
     <Particles className="hero-particles" />
     <div className="hero-grid" />
-    <CursorGrid
-      className="hero-cursor-grid"
-      cellSize={70}
-      color="#A35C8F"
-      radius={170}
-      falloff="smooth"
-      holdTime={420}
-      fadeDuration={900}
-      lineWidth={1.4}
-      maxOpacity={0.95}
-      fillOpacity={0.12}
-      gridOpacity={0.05}
-      cellRadius={4}
-      clickPulse
-      pulseSpeed={560}
-    />
     <div className="hero-content">
       <p className="eyebrow"><span />REALITY ENGINE / AI BUILDER / 2026</p>
       <h1 className="sr-only">余小莫的AI笔记</h1>
@@ -84,10 +67,9 @@ export default function HomePage() {
         scatter={200}
         gatherDuration={1800}
         stagger={260}
-        pointerRepel={55}
-        repelRadius={160}
+        pointerRepel={0}
         idleDrift={0.8}
-       trigger="hover"
+        trigger="mount"
         fontSize="clamp(44px, 11vw, 150px)"
         fontWeight={900}
         glow

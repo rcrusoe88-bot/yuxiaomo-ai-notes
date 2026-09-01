@@ -15,7 +15,6 @@ export default function Particles({ className = '' }) {
     let height = 0;
     let particles = [];
     let frame;
-    let pointer = { x: 0, y: 0, active: false };
 
     const resize = () => {
       const ratio = Math.min(window.devicePixelRatio || 1, 2);
@@ -42,9 +41,10 @@ export default function Particles({ className = '' }) {
     const draw = time => {
       const seconds = time / 1000;
       context.clearRect(0, 0, width, height);
-      const target = pointer.active
-        ? pointer
-        : { x: width * (0.72 + Math.sin(seconds * 0.25) * 0.08), y: height * (0.43 + Math.cos(seconds * 0.38) * 0.1) };
+      const target = {
+        x: width * (0.72 + Math.sin(seconds * 0.25) * 0.08),
+        y: height * (0.43 + Math.cos(seconds * 0.38) * 0.1)
+      };
       const radius = Math.min(width, height) * 0.22;
 
       particles.forEach((particle, index) => {
@@ -73,22 +73,12 @@ export default function Particles({ className = '' }) {
       if (!reducedMotion) frame = requestAnimationFrame(draw);
     };
 
-    const movePointer = event => {
-      const box = canvas.getBoundingClientRect();
-      pointer = { x: event.clientX - box.left, y: event.clientY - box.top, active: true };
-    };
-    const leavePointer = () => { pointer.active = false; };
-
     window.addEventListener('resize', resize);
-    canvas.addEventListener('pointermove', movePointer);
-    canvas.addEventListener('pointerleave', leavePointer);
     resize();
     draw(0);
 
     return () => {
       window.removeEventListener('resize', resize);
-      canvas.removeEventListener('pointermove', movePointer);
-      canvas.removeEventListener('pointerleave', leavePointer);
       cancelAnimationFrame(frame);
     };
   }, []);
