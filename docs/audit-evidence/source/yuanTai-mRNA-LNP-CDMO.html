@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>远泰生物 · mRNA-LNP 全流程 CRDMO 服务</title>
+<style>
+  :root{
+    --purple:#7A318D;
+    --purple-deep:#5A226B;
+    --purple-mid:#9B5BAE;
+    --purple-soft:#F3EDF7;
+    --purple-line:#E3D4EC;
+    --red:#C8202C;
+    --ink:#2A2040;
+    --ink-soft:#5F5570;
+    --muted:#8B8299;
+    --white:#ffffff;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html,body{background:#E9E2EE;font-family:"PingFang SC","Microsoft YaHei","Noto Sans SC","Helvetica Neue",Arial,sans-serif;color:var(--ink);}
+  .page{
+    width:210mm;height:297mm;background:var(--white);
+    margin:14px auto;position:relative;overflow:hidden;
+    box-shadow:0 10px 30px rgba(90,34,107,.18);
+  }
+  /* ===== 通用 ===== */
+  .section-title{
+    display:inline-flex;align-items:center;
+    background:linear-gradient(90deg,var(--purple) 0%,var(--purple-mid) 100%);
+    color:#fff;font-size:15px;font-weight:800;letter-spacing:.5px;
+    padding:7px 22px 7px 16px;border-radius:4px 20px 20px 4px;position:relative;
+  }
+  .section-title::after{content:"";position:absolute;left:0;top:0;bottom:0;width:14px;background:var(--purple-deep);border-radius:4px 0 0 4px;}
+  .en-caption{font-size:9px;color:var(--purple-mid);letter-spacing:2px;font-weight:600;text-transform:uppercase;}
+  .lead{font-size:10.5px;line-height:1.9;color:var(--ink-soft);}
+
+  /* ===== 页脚条 ===== */
+  .page-footer{
+    position:absolute;left:0;right:0;bottom:0;height:18mm;
+    background:linear-gradient(90deg,var(--purple-deep),var(--purple));
+    display:flex;align-items:center;justify-content:space-between;
+    padding:0 16mm;color:#fff;
+  }
+  .page-footer .fl{display:flex;align-items:center;gap:9px;font-size:10px;font-weight:700;letter-spacing:.5px;}
+  .page-footer .fl .logo{width:26px;height:auto;}
+  .page-footer .fr{font-size:8.5px;opacity:.92;letter-spacing:.3px;text-align:right;line-height:1.7;}
+
+  /* ===== P1 封面 ===== */
+  .cover-top{display:flex;align-items:center;justify-content:space-between;padding:10mm 17mm 8mm 12mm;background:#D8BFD8;}
+  .cover-brand{display:flex;flex-direction:column;align-items:center;gap:8px;}
+  .cover-brand .logo{height:88px;width:auto;}
+  .cover-brand .sb{font-size:11px;color:var(--purple);font-weight:700;letter-spacing:1.5px;margin-top:0;}
+  .cover-nav{display:flex;gap:8px;flex-wrap:nowrap;}
+  .nav-pill{border:1px solid var(--purple-line);color:var(--purple);background:var(--purple-soft);
+    font-size:10px;font-weight:700;padding:6px 14px;border-radius:20px;letter-spacing:.5px;white-space:nowrap;}
+  .cover-hero{position:relative;height:118mm;margin:0 0;}
+  .cover-hero img{width:100%;height:100%;object-fit:cover;display:block;}
+  .cover-hero .shade{position:absolute;inset:0;background:linear-gradient(180deg,rgba(90,34,107,.06) 0%,rgba(90,34,107,0) 40%,rgba(90,34,107,.35) 100%);}
+  .cover-title{padding:15mm 17mm 0;position:relative;}
+  .cover-title .kicker{font-size:10px;color:var(--red);font-weight:800;letter-spacing:2px;}
+  .cover-title h1{font-size:31px;font-weight:900;letter-spacing:1px;color:var(--purple);line-height:1.2;margin-top:6px;}
+  .cover-title .en{font-size:11px;color:var(--purple-mid);font-weight:600;letter-spacing:.5px;margin-top:8px;}
+  .cover-title p{font-size:10.5px;line-height:1.85;color:var(--ink-soft);margin-top:12px;max-width:158mm;}
+  .cover-stats{display:flex;gap:0;margin-top:18mm;padding:0 17mm;position:relative;border-top:1px solid var(--purple-line);}
+  .cstat{flex:1;padding:8mm 0 0;}
+  .cstat+ .cstat{margin-left:12mm;}
+  .cstat .num{font-size:23px;font-weight:900;color:var(--purple);}
+  .cstat .num small{font-size:13px;font-weight:800;color:var(--purple-mid);}
+  .cstat .lab{font-size:9.5px;color:var(--ink-soft);margin-top:3px;letter-spacing:.3px;}
+  .cover-foot{margin-top:auto;}
+
+  /* ===== P2 关于 + 端到端 ===== */
+  .pad{padding:17mm 17mm 0;}
+  .about-grid{display:grid;grid-template-columns:1.35fr 1fr;gap:12mm;margin-top:12mm;}
+  .about-grid .lead{margin-top:0;}
+  .about-facts{margin-top:12px;}
+  .about-facts li{list-style:none;font-size:9.5px;color:var(--ink-soft);line-height:1.8;padding-left:15px;position:relative;}
+  .about-facts li::before{content:"";position:absolute;left:0;top:8px;width:7px;height:7px;border-radius:50%;background:var(--purple-mid);}
+  .about-img{border-radius:8px;overflow:hidden;height:100%;min-height:78mm;}
+  .about-img img{width:100%;height:100%;object-fit:cover;display:block;}
+
+  .flow-strip{display:flex;align-items:center;justify-content:space-between;margin-top:12mm;padding:9mm 8mm;background:var(--purple-soft);border:1px solid var(--purple-line);border-radius:8px;}
+  .fnode{flex:1;text-align:center;}
+  .fnode .ico{width:40px;height:40px;margin:0 auto 5px;color:var(--purple);}
+  .fnode .n{font-size:10px;font-weight:800;color:var(--purple-deep);}
+  .fnode .d{font-size:8.5px;color:var(--ink-soft);margin-top:2px;line-height:1.4;}
+  .farrow{flex:0 0 26px;color:var(--purple-mid);display:flex;align-items:center;justify-content:center;}
+  .farrow svg{width:18px;height:18px;}
+
+  .svc-table{margin-top:8mm;width:100%;border-collapse:collapse;}
+  .svc-table thead th{background:var(--purple);color:#fff;font-size:10px;font-weight:700;text-align:left;padding:8px 11px;letter-spacing:.3px;}
+  .svc-table thead th:first-child{width:24%;border-radius:4px 0 0 0;}
+  .svc-table thead th:last-child{border-radius:0 4px 0 0;}
+  .svc-table tbody td{font-size:9px;color:var(--ink-soft);padding:7px 11px;border-bottom:1px solid var(--purple-line);line-height:1.5;vertical-align:top;}
+  .svc-table tbody td:first-child{font-weight:700;color:var(--purple-deep);white-space:nowrap;}
+  .svc-table tbody tr:nth-child(even) td{background:#FBF8FD;}
+
+  /* ===== P3 交付 + 产能 + 里程碑 ===== */
+  .stage-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:5mm;margin-top:14mm;}
+  .stage{border:1px solid var(--purple-line);border-radius:8px;overflow:hidden;background:#fff;}
+  .stage-top{background:linear-gradient(135deg,var(--purple),var(--purple-mid));color:#fff;padding:5mm 3mm 4mm;text-align:center;}
+  .stage-top .wk{font-size:9px;background:rgba(255,255,255,.22);display:inline-block;padding:2px 9px;border-radius:20px;font-weight:700;}
+  .stage-top .n{font-size:12px;font-weight:800;margin-top:5px;line-height:1.3;}
+  .stage-body{padding:4mm 4mm 5mm;}
+  .stage-body li{list-style:none;font-size:8.8px;color:var(--ink-soft);line-height:1.5;padding:2px 0 2px 13px;position:relative;}
+  .stage-body li::before{content:"";position:absolute;left:1px;top:9px;width:5px;height:5px;border-radius:50%;background:var(--purple-mid);}
+  .total-bar{margin-top:10mm;background:var(--purple-soft);border:1px solid var(--purple-line);border-radius:8px;padding:6mm 8mm;display:flex;align-items:center;justify-content:space-between;}
+  .total-bar .tl{font-size:11px;font-weight:800;color:var(--purple-deep);}
+  .total-bar .tr{font-size:18px;font-weight:900;color:var(--purple);}
+
+  .cap-panel{background:#fff;border:1px solid var(--purple-line);border-radius:8px;padding:6mm 8mm;margin-top:12mm;}
+  .cap-list{margin-top:0;}
+  .cap-list li{list-style:none;font-size:9px;color:var(--ink-soft);line-height:1.75;padding-left:15px;position:relative;margin-bottom:3px;}
+  .cap-list li::before{content:"";position:absolute;left:0;top:8px;width:7px;height:7px;border-radius:50%;background:var(--red);}
+  .cap-list li b{color:var(--purple-deep);font-weight:800;}
+
+  .milestones{display:grid;grid-template-columns:1fr 1fr;gap:7mm;margin-top:12mm;}
+  .mile{border:1px solid var(--purple-line);border-radius:8px;padding:5mm 6mm;background:linear-gradient(180deg,#fff,#FBF8FD);}
+  .mile .tag{display:inline-flex;align-items:center;gap:5px;background:var(--purple);color:#fff;font-size:8.5px;font-weight:700;padding:3px 11px;border-radius:20px;letter-spacing:.5px;}
+  .mile h3{font-size:13px;color:var(--purple-deep);font-weight:800;margin:7px 0 5px;}
+  .mile p{font-size:9.5px;line-height:1.8;color:var(--ink-soft);}
+  .mile .bigdate{font-size:26px;font-weight:900;color:var(--purple-line);margin-top:6px;letter-spacing:1px;}
+
+  /* P3 整页背景（白色主题，背景图清晰可见） */
+  .page-bg3{background:url('asset_bg3.jpg') center center / cover no-repeat;}
+  .page-bg3::before{content:"";position:absolute;inset:0;background:linear-gradient(150deg,rgba(255,255,255,.82) 0%,rgba(250,246,251,.62) 50%,rgba(255,255,255,.78) 100%);z-index:0;}
+  .page-bg3 .pad{position:relative;z-index:1;}
+  .page-bg3 .en-caption{color:var(--purple);}
+  .page-bg3 .section-title{box-shadow:0 4px 14px rgba(90,34,107,.16);}
+  .page-bg3 .stage,.page-bg3 .total-bar,.page-bg3 .cap-panel,.page-bg3 .mile{background-color:rgba(255,255,255,.96);box-shadow:0 8px 22px rgba(90,34,107,.10);}
+
+  /* ===== P4 现货目录 ===== */
+  .catalog-head{display:grid;grid-template-columns:1.15fr 1fr;gap:12mm;margin-top:11mm;align-items:stretch;}
+  .catalog-img{border-radius:8px;overflow:hidden;height:100%;min-height:66mm;position:relative;}
+  .catalog-img img{width:100%;height:100%;object-fit:cover;display:block;}
+  .spec-box{border:1px solid var(--purple-line);border-radius:8px;padding:7mm 8mm;background:var(--purple-soft);}
+  .spec-box h4{font-size:11px;color:var(--purple-deep);font-weight:800;margin-bottom:6px;}
+  .spec-box p{font-size:9px;line-height:1.8;color:var(--ink-soft);}
+  .spec-box .dl{margin-top:10px;display:grid;grid-template-columns:auto 1fr;gap:4px 12px;font-size:9px;}
+  .spec-box .dl dt{color:var(--purple-deep);font-weight:800;white-space:nowrap;}
+  .spec-box .dl dd{color:var(--ink-soft);}
+  .prod-table{margin-top:10mm;width:100%;border-collapse:collapse;}
+  .prod-table thead th{background:var(--purple);color:#fff;font-size:9.5px;font-weight:700;text-align:left;padding:8px 10px;letter-spacing:.3px;}
+  .prod-table thead th:first-child{border-radius:4px 0 0 0;}
+  .prod-table thead th:last-child{border-radius:0 4px 0 0;}
+  .prod-table tbody td{font-size:8.8px;color:var(--ink-soft);padding:6.5px 10px;border-bottom:1px solid var(--purple-line);line-height:1.4;}
+  .prod-table tbody td:first-child{font-weight:700;color:var(--purple-deep);white-space:nowrap;}
+  .prod-table tbody td:nth-child(2){font-weight:700;color:var(--purple);white-space:nowrap;}
+  .prod-table tbody tr:nth-child(even) td{background:#FBF8FD;}
+  .cat-notes{margin-top:8mm;background:var(--purple-soft);border:1px solid var(--purple-line);border-radius:8px;padding:6mm 8mm;font-size:9px;color:var(--ink-soft);line-height:1.8;}
+  .cat-notes b{color:var(--purple-deep);font-weight:800;}
+
+  /* 打印 */
+  @page{size:A4;margin:0;}
+  @media print{
+    html,body{background:#fff;margin:0;}
+    .page{margin:0;box-shadow:none;break-after:page;}
+    .page:last-child{break-after:auto;}
+  }
+</style>
+</head>
+<body>
+  <!-- ========== P1 封面 ========== -->
+  <div class="page">
+    <div class="cover-top">
+      <div class="cover-brand">
+        <img class="logo" src="asset_logo.png" alt="远泰生物">
+        <div class="sb">ProMab · mRNA-LNP CRDMO</div>
+      </div>
+      <div class="cover-nav">
+        <span class="nav-pill">序列优化</span>
+        <span class="nav-pill">现货产品</span>
+        <span class="nav-pill">定制服务</span>
+        <span class="nav-pill">联系我们</span>
+      </div>
+    </div>
+
+    <div class="cover-hero">
+      <img src="asset_cover.jpg" alt="远泰生物实验室">
+      <div class="shade"></div>
+    </div>
+
+    <div class="cover-title">
+      <div class="kicker">ADVANCED THERAPIES · END-TO-END CRDMO</div>
+      <h1>mRNA-LNP 全流程 CRDMO 服务平台</h1>
+      <div class="en">Your Trusted Partner in mRNA-LNP Therapeutics, CMC &amp; CGT</div>
+      <p>远泰生物依托自主知识产权的 mRNA-LNP 技术平台，提供从序列设计、质粒构建、mRNA 制备、LNP 包封、CMC 工艺到 IND 申报的全流程一站式服务，覆盖研发、临床前到商业化生产，已助力多个项目顺利进入临床阶段，并为免疫细胞工程研究提供即时可用、高度稳定的 mRNA-LNP 现货产品线。</p>
+    </div>
+
+    <div class="cover-stats">
+      <div class="cstat"><div class="num">15<small>+</small></div><div class="lab">mRNA-LNP 现货产品</div></div>
+      <div class="cstat"><div class="num">6–8<small> 周</small></div><div class="lab">标准项目交付周期</div></div>
+      <div class="cstat"><div class="num">3<small> 大</small></div><div class="lab">核心技术平台</div></div>
+      <div class="cstat"><div class="num">FDA<small> IND</small></div><div class="lab">2026.03 获批里程碑</div></div>
+    </div>
+
+    <div class="page-footer">
+      <div class="fl">远泰生物 ProMab</div>
+      <div class="fr">电话：0731 8579 0072 · 官网：www.promab.cn<br>地址：长沙高新技术开发区林语路239号顺畅高新产业园5楼</div>
+    </div>
+  </div>
+
+  <!-- ========== P2 关于 + 端到端 ========== -->
+  <div class="page">
+    <div class="pad">
+      <div class="section-title">关于远泰生物</div>
+      <div class="about-grid">
+        <div>
+          <div class="en-caption" style="margin-bottom:10px;">About ProMab</div>
+          <p class="lead">远泰生物是一家聚焦 mRNA 药物与细胞基因治疗（CGT）的新一代生物技术公司，矢志为全球基因细胞治疗药物与核酸药物提供从药物研发、质量研究、临床应用到产业化的全产业链一站式 CRDMO 服务。公司在中国长沙设有研发与 GMP 产业化基地，核心团队来自国内外顶尖生物科技公司与科研机构，在基因治疗与核酸治疗领域拥有丰富的产业经验与管理经验。</p>
+          <ul class="about-facts">
+            <li>以 mNRA-LNP 合成及递送全流程工艺开发与生产为核心技术平台</li>
+            <li>具备序列设计、质粒、mRNA、LNP、QC 及申报的全链路能力</li>
+            <li>覆盖 mRNA 药物、疫苗、CAR、重组抗体、细胞因子、免疫调节等前沿方向</li>
+          </ul>
+        </div>
+        <div class="about-img"><img src="asset_about.jpg" alt="远泰实验室人员"></div>
+      </div>
+
+      <div class="section-title" style="margin-top:13mm;">端到端 CRDMO 解决方案</div>
+      <div class="en-caption" style="margin-top:8px;">End-to-End CRDMO Solutions</div>
+      <div class="flow-strip">
+        <div class="fnode">
+          <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 9h18M8 3v4M16 3v4"/></svg></div>
+          <div class="n">Design</div><div class="d">序列设计</div>
+        </div>
+        <div class="farrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
+        <div class="fnode">
+          <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="8"/><path d="M12 4a8 8 0 0 1 0 16"/></svg></div>
+          <div class="n">Plasmid</div><div class="d">质粒制备</div>
+        </div>
+        <div class="farrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
+        <div class="fnode">
+          <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 6c3 3 13 3 16 0M4 12c3 3 13 3 16 0M4 18c3 3 13 3 16 0"/></svg></div>
+          <div class="n">IVT</div><div class="d">mRNA 合成</div>
+        </div>
+        <div class="farrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
+        <div class="fnode">
+          <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="3.5"/></svg></div>
+          <div class="n">(t)LNP</div><div class="d">LNP 包封</div>
+        </div>
+        <div class="farrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
+        <div class="fnode">
+          <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M9 3h6v5l3 3v10H6V11l3-3zM9 14h6M9 17h6"/></svg></div>
+          <div class="n">QC</div><div class="d">质量分析</div>
+        </div>
+      </div>
+
+      <table class="svc-table">
+        <thead><tr><th>服务阶段</th><th>服务详情</th></tr></thead>
+        <tbody>
+          <tr><td>序列设计</td><td>mRNA 序列优化、提升翻译效率与蛋白表达水平；DNA/RNA 序列分析与密码子优化。</td></tr>
+          <tr><td>质粒制备</td><td>载体构建与高纯度质粒 DNA 生产；超螺旋比例≥90%，低内毒素、宿主细胞残留。</td></tr>
+          <tr><td>mRNA 合成</td><td>mg 至 100g 规模 IVT mRNA 制备；一步共转录加帽；两步酶法加帽，加帽率>97%。</td></tr>
+          <tr><td>LNP 包封</td><td>微流控包封封装，包封率高、PDI 低、粒径均一；精密脂质配方与多价共包裹。</td></tr>
+          <tr><td>蛋白/抗体合成</td><td>多肽、重组蛋白及纳米抗体的高效表达与纯化服务，满足功能验证需求。</td></tr>
+          <tr><td>质量分析</td><td>70+ 项分析方法平台，支持放行检测、质量研究与稳定性研究。</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="page-footer">
+      <div class="fl">远泰生物 ProMab</div>
+      <div class="fr">电话：0731 8579 0072 · 官网：www.promab.cn · 地址：长沙高新技术开发区林语路239号</div>
+    </div>
+  </div>
+
+  <!-- ========== P3 交付 + 产能 + 里程碑 ========== -->
+  <div class="page page-bg3">
+    <div class="pad">
+      <div class="section-title">快速、高效、可规模化的端到端交付</div>
+      <div class="en-caption" style="margin-top:8px;">Timeline &amp; Delivery</div>
+      <div class="stage-grid">
+        <div class="stage">
+          <div class="stage-top"><div class="wk">3–4 周</div><div class="n">模板质粒构建</div></div>
+          <ul class="stage-body">
+            <li>序列设计与 DNA 合成</li>
+            <li>模板质粒制备</li>
+            <li>超螺旋纯度检测</li>
+            <li>DNA 浓度 / 酶切鉴别</li>
+          </ul>
+        </div>
+        <div class="stage">
+          <div class="stage-top"><div class="wk">1–2 周</div><div class="n">mRNA 合成与纯化</div></div>
+          <ul class="stage-body">
+            <li>质粒线性化与纯化</li>
+            <li>IVT（修饰加帽）</li>
+            <li>RNA 浓度 / 大小检测</li>
+            <li>制备 1mg mRNA 原液</li>
+          </ul>
+        </div>
+        <div class="stage">
+          <div class="stage-top"><div class="wk">1 周</div><div class="n">LNP 包封与纯化</div></div>
+          <ul class="stage-body">
+            <li>脂质纳米颗粒配方</li>
+            <li>微流控包封封装</li>
+            <li>包封率 / 粒径检测</li>
+            <li>PDI / Zeta 电势检测</li>
+          </ul>
+        </div>
+        <div class="stage">
+          <div class="stage-top"><div class="wk">1 周</div><div class="n">体外验证</div></div>
+          <ul class="stage-body">
+            <li>转染 HEK293 细胞</li>
+            <li>转染 NK / M / T / DC / γδT</li>
+            <li>流式阳性率检测</li>
+          </ul>
+        </div>
+      </div>
+      <div class="total-bar"><div class="tl">全流程合计交付周期</div><div class="tr">6 – 8 周</div></div>
+
+      <div class="section-title" style="margin-top:16mm;">产能与合规保障</div>
+      <div class="cap-panel">
+        <ul class="cap-list">
+          <li><b>GMP 产业化基地</b>：长沙研发与 GMP 基地，具备完整 GMP 生产能力。</li>
+          <li><b>mRNA 合成</b>：mg 至 100g 级 IVT 合成，覆盖临床前到商业化规模。</li>
+          <li><b>LNP 递送系统</b>：微流控包封，批次重现性高，支持多价共包裹。</li>
+          <li><b>质量控制实验室</b>：配备完善的 QC 分析设施，确保全面质量合规性。</li>
+          <li><b>全球合规</b>：遵循 NMPA、FDA、EMA 最新指导原则，同步参照 ICH、WHO、PDA 标准。</li>
+        </ul>
+      </div>
+
+      <div class="milestones">
+        <div class="mile">
+          <span class="tag">✓ 里程碑案例</span>
+          <h3>FDA IND 获批</h3>
+          <p>2026 年 3 月，助力美国 IntraAb 公司 mRNA-LNP 药物获 FDA IND 批准，远泰生物负责 CMC 工艺与临床前研究，验证全流程 CRDMO 能力。</p>
+          <div class="bigdate">2026</div>
+        </div>
+        <div class="mile">
+          <span class="tag">◎ 赋能领域</span>
+          <h3>创新疗法开发</h3>
+          <p>加速 mRNA 药物从研发到临床转化，赋能体内抗体、蛋白替代疗法、in vivo CAR-T / NK / Macrophage、肿瘤免疫等前沿疗法开发。</p>
+        </div>
+      </div>
+    </div>
+    <div class="page-footer">
+      <div class="fl">远泰生物 ProMab</div>
+      <div class="fr">电话：0731 8579 0072 · 官网：www.promab.cn · 地址：长沙高新技术开发区林语路239号</div>
+    </div>
+  </div>
+
+  <!-- ========== P4 现货目录 ========== -->
+  <div class="page">
+    <div class="pad">
+      <div class="section-title">现货产品 · mRNA-LNP</div>
+      <div class="en-caption" style="margin-top:8px;">In-Stock mRNA-LNP Products</div>
+      <div class="catalog-head">
+        <div class="catalog-img"><img src="asset_catalog.jpg" alt="mRNA-LNP现货产品"></div>
+        <div class="spec-box">
+          <h4>产品规格</h4>
+          <p>远泰生物 PM-LNP 产品线基础规格为含有 10μg mRNA、封装在 200μL LNP 制剂中。脂质纳米颗粒（LNPs）提供有效方法保护 RNA 免受降解，并使编码 mRNA 能够高效、安全地递送。通过 FACS 验证，已在多种细胞类型中验证其高效性。</p>
+          <div class="dl">
+            <dt>mRNA 含量</dt><dd>10 μg（标准规格）</dd>
+            <dt>LNP 体积</dt><dd>200 μL 制剂</dd>
+            <dt>验证方式</dt><dd>FACS 验证 · 多细胞类型验证</dd>
+            <dt>适用范围</dt><dd>疫苗开发 / CAR / 抗体 / 细胞因子 / 免疫调节</dd>
+          </div>
+        </div>
+      </div>
+
+      <table class="prod-table">
+        <thead><tr><th>货号 #</th><th>类型</th><th>包封 mRNA</th><th>In Vitro QC (细胞类型)</th><th>技术应用</th></tr></thead>
+        <tbody>
+          <tr><td>PM-LNP-0014</td><td>Protein</td><td>COVID-19 RBD mRNA-LNP</td><td>HEK293S</td><td>Vaccine development</td></tr>
+          <tr><td>PM-LNP-0016</td><td>CAR</td><td>Anti-CD19 CAR mRNA-LNP</td><td>HEK293S</td><td>Chimeric antigen receptor</td></tr>
+          <tr><td>PM-LNP-0017</td><td>CAR</td><td>Anti-BCMA CAR mRNA-LNP</td><td>HEK293S</td><td>Chimeric antigen receptor</td></tr>
+          <tr><td>PM-LNP-0018</td><td>CAR</td><td>Anti-HER2 CAR mRNA-LNP</td><td>HEK293S</td><td>Chimeric antigen receptor</td></tr>
+          <tr><td>PM-LNP-0019</td><td>Antibody</td><td>Anti-EPCAM scFv/CD3 bsAb</td><td>HEK293S</td><td>Bispecific antibody</td></tr>
+          <tr><td>PM-LNP-0021</td><td>Control</td><td>eGFP</td><td>HEK293S, iPSC, T cells</td><td>Control</td></tr>
+          <tr><td>PM-LNP-0024</td><td>Control</td><td>Luciferase</td><td>HEK293S, T cells, iPSC</td><td>Control</td></tr>
+          <tr><td>PM-LNP-0087</td><td>Protein</td><td>IL12B-FLAG tag (secreted)</td><td>HEK293S</td><td>Protein research</td></tr>
+          <tr><td>PM-LNP-0041</td><td>Protein</td><td>GM-CSF mRNA-LNP</td><td>HEK293S</td><td>Protein research</td></tr>
+          <tr><td>PM-LNP-0040</td><td>Protein</td><td>L-myc</td><td>HEK293S</td><td>Protein research</td></tr>
+          <tr><td>PM-LNP-0042</td><td>Protein</td><td>OCT-4</td><td>HEK293S</td><td>Protein research</td></tr>
+          <tr><td>PM-LNP-0043</td><td>Protein</td><td>Nanog</td><td>HEK293S</td><td>Protein research</td></tr>
+          <tr><td>PM-LNP-0044</td><td>Protein</td><td>KLF-4</td><td>HEK293S</td><td>Protein research</td></tr>
+          <tr><td>PM-LNP-0046</td><td>Protein</td><td>C-myc</td><td>HEK293S</td><td>Protein research</td></tr>
+          <tr><td>PM-LNP-0047</td><td>Protein</td><td>Sox-2</td><td>HEK293S</td><td>Protein research</td></tr>
+        </tbody>
+      </table>
+
+      <div class="cat-notes">
+        <b>定制服务：</b>除15种现货产品外，我们还为临床前研究提供 mRNA-LNP 递送定制服务，支持更大体积、定制配方或不同数量的信使核糖核酸 LNP。更多应用产品详见官网：<b>mRNA-LNP Products</b>（promab.cn）。
+      </div>
+    </div>
+    <div class="page-footer">
+      <div class="fl">远泰生物 ProMab</div>
+      <div class="fr">电话：0731 8579 0072 · 官网：www.promab.cn · 地址：长沙高新技术开发区林语路239号</div>
+    </div>
+  </div>
+</body>
+</html>
+
